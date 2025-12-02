@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yejin Kim | DevOps & Backend Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Portfolio of Yejin Kim – DevOps & Backend engineer behind DuckOn, a real-time live streaming & meme community platform."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #090f1f;
+      --bg-elevated: #0b1022;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.1);
+      --accent-strong: #6366f1;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --chip-bg: rgba(15, 23, 42, 0.9);
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.8);
+      --radius-xl: 18px;
+      --radius-pill: 999px;
+      --transition-fast: 180ms ease-out;
+      --transition-med: 240ms ease;
+      --gradient-hero: radial-gradient(circle at top left, #4f46e5 0, #050816 45%, #020617 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Layout */
+
+    .page {
+      min-height: 100vh;
+      background: radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.14), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.18), transparent 55%),
+        var(--bg);
+      color: var(--text-main);
+    }
+
+    .page-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
+
+    @media (min-width: 1024px) {
+      .page-inner {
+        padding: 28px 24px 96px;
+      }
+    }
+
+    /* Top Nav */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.95), rgba(5, 8, 22, 0.7), transparent);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 30% 0, #facc15, #f97316 40%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #020617;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.5);
+    }
+
+    .nav-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+      align-items: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), #22d3ee);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: rgba(15, 23, 42, 0.9);
+        color: var(--text-main);
+        gap: 6px;
+        cursor: pointer;
+        transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+      }
+
+      .nav-cta:hover {
+        background: rgba(15, 23, 42, 1);
+        border-color: var(--accent-strong);
+        transform: translateY(-1px);
+      }
+
+      .nav-cta span {
+        font-size: 14px;
+      }
+    }
+
+    .lang-toggle {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .lang-toggle:hover {
+      background: #020617;
+      border-color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr);
+      gap: 32px;
+      margin-top: 40px;
+      padding: 24px 20px;
+      border-radius: 28px;
+      background: var(--gradient-hero);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.36), transparent 50%),
+        radial-gradient(circle at 80% 0, rgba(236, 72, 153, 0.22), transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr);
+      gap: 28px;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        padding: 32px 32px 30px;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      }
+    }
+
+    .hero-main-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-main-title .highlight {
+      display: inline-block;
+      background: linear-gradient(120deg, #e5e7eb, #bfdbfe, #c4b5fd);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px 4px 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      margin-bottom: 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+    }
+
+    .hero-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: conic-gradient(from 200deg, #f97316, #facc15, #22c55e, #0ea5e9, #f97316);
+      padding: 2px;
+      position: relative;
+    }
+
+    .hero-dot-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
+    .hero-bio {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .tag-pill span {
+      font-size: 10px;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background var(--transition-med), transform var(--transition-fast), box-shadow var(--transition-med),
+        border-color var(--transition-med), color var(--transition-med);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-strong), #22c55e);
+      color: #020617;
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) translateZ(0);
+      box-shadow: 0 20px 50px rgba(56, 189, 248, 0.55);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .hero-contact-line {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Hero right: profile & highlight */
+
+    .hero-right {
+      display: grid;
+      gap: 16px;
+      align-content: space-between;
+    }
+
+    .profile-card {
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 64, 175, 0.75));
+      padding: 14px 14px 14px 14px;
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    .profile-avatar-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      border: 2px solid rgba(129, 140, 248, 0.8);
+      padding: 2px;
+      background: radial-gradient(circle at 30% 0, #facc15, #0f172a 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .profile-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: rgba(15, 23, 42, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #e5e7eb;
+      text-align: center;
+      padding: 6px;
+    }
+
+    .profile-avatar-inner img {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
+    }
+
+    .profile-text-main {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .profile-text-sub {
+      font-size: 11px;
+      color: #e5e7eb;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .profile-meta {
+      font-size: 10px;
+      color: #c7d2fe;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero-highlight {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 14px 14px 12px;
+      font-size: 12px;
+    }
+
+    .hero-highlight-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #c7d2fe;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .hero-highlight-title span {
+      font-size: 11px;
+      font-weight: 500;
+      color: #a5b4fc;
+    }
+
+    .hero-highlight-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .metric-chip {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 1px;
+      padding: 6px 9px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      min-width: 90px;
+    }
+
+    .metric-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .metric-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* Section generic */
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title-dot {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #22d3ee);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Projects */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (min-width: 840px) {
+      .projects-grid {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-xl);
+      background: var(--bg-soft);
+      border: 1px solid var(--border-subtle);
+      padding: 18px 16px 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.7);
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.9);
+      border-color: rgba(129, 140, 248, 0.8);
+      background: #050a1b;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #c7d2fe;
+      border: 1px solid rgba(129, 140, 248, 0.6);
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .chip-link {
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: #e5e7eb;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .chip-link:hover {
+      background: #020617;
+      border-color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .chip-link span {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .card-tech {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 3px;
+    }
+
+    .project-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .project-meta span::before {
+      content: "•";
+      font-size: 10px;
+      color: rgba(148, 163, 184, 0.9);
+    }
+
+    .card-actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Secondary project / screenshot card */
+
+    .screenshot-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(94, 234, 212, 0.12), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.16), transparent 65%),
+        #020617;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 14px 14px 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .screenshot-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .screenshot-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #e5e7eb;
+      margin-bottom: 6px;
+    }
+
+    .screenshot-box {
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 14px;
+    }
+
+    .screenshot-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+
+    /* Experience & Awards */
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .two-col-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      }
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 12px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .timeline-marker-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .timeline-marker {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      background: #020617;
+      margin-top: 5px;
+    }
+
+    .timeline-content {
+      padding-bottom: 8px;
+      position: relative;
+    }
+
+    .timeline-content::after {
+      content: "";
+      position: absolute;
+      left: -16px;
+      top: 16px;
+      width: 1px;
+      height: calc(100% - 10px);
+      background: linear-gradient(to bottom, rgba(148, 163, 184, 0.6), transparent);
+    }
+
+    .timeline-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 1px;
+    }
+
+    .timeline-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .timeline-summary {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Skills & Others */
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pill-group .pill-label {
+      font-size: 11px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 2px;
+    }
+
+    .skill-block {
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-soft);
+      padding: 12px 12px 10px;
+      font-size: 12px;
+    }
+
+    .skill-block-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .skill-chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 820px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .small-muted {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Contact footer */
+
+    .footer {
+      margin-top: 64px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: #e5e7eb;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      background: #020617;
+      border-color: var(--accent-strong);
+    }
+
+    /* Small helpers */
+
+    .mono {
+      font-family: "Space Grotesk", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+        monospace;
+    }
+
+    /* Modal */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+      padding: 20px;
+    }
+
+    .modal-card {
+      max-width: 720px;
+      width: 100%;
+      border-radius: 20px;
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+      padding: 18px 18px 18px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background: #020617;
+      border-color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .modal-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .modal-body p {
+      margin-bottom: 10px;
+    }
+
+    .modal-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #c7d2fe;
+      border: 1px solid rgba(129, 140, 248, 0.6);
+      margin-left: 8px;
+    }
+
+    .modal-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="logo-circle">YK</div>
+        <div class="nav-title">
+          <span class="en">Yejin Kim</span>
+          <span class="ko hidden">김예진</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#projects">
+          <span class="en">Projects</span>
+          <span class="ko hidden">프로젝트</span>
+        </a>
+        <a href="#experience">
+          <span class="en">Experience</span>
+          <span class="ko hidden">경력</span>
+        </a>
+        <a href="#awards">
+          <span class="en">Awards</span>
+          <span class="ko hidden">수상</span>
+        </a>
+        <a href="#skills">
+          <span class="en">Skills</span>
+          <span class="ko hidden">기술</span>
+        </a>
+      </nav>
+      <div class="nav-right-group">
+        <button class="lang-toggle" type="button">KR</button>
+        <a href="#contact" class="nav-cta">
+          <span class="en">Contact</span>
+          <span class="ko hidden">연락하기</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+    <main class="page-inner">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-subtitle-chip">
+              <div class="hero-dot">
+                <div class="hero-dot-inner">●</div>
+              </div>
+              <span class="en">
+                DevOps & Backend · LIVE PRODUCTS
+              </span>
+              <span class="ko hidden">
+                DevOps & 백엔드 · 실제 서비스 운영
+              </span>
+            </div>
+
+            <h1 class="hero-main-title">
+              <span class="en">
+                Building <span class="highlight">real-time streaming</span> & scalable backend systems.
+              </span>
+              <span class="ko hidden">
+                <span class="highlight">실시간 스트리밍</span>과 확장 가능한 백엔드 시스템을 만듭니다.
+              </span>
+            </h1>
+
+            <p class="hero-bio">
+              <span class="en">
+                I’m <strong class="mono">Yejin Kim</strong>, the engineer behind
+                <span class="mono">DuckOn</span> – a live streaming & meme community platform – designing AWS infrastructure,
+                CI/CD pipelines, and backend services that actually run in production.
+              </span>
+              <span class="ko hidden">
+                저는 실시간 스트리밍 & 밈 커뮤니티 플랫폼 <strong class="mono">DuckOn</strong>의
+                백엔드와 DevOps 전반을 설계·운영한 엔지니어 <strong class="mono">김예진</strong>입니다.
+                AWS 인프라, CI/CD 파이프라인, 실서비스용 백엔드를 직접 설계하고 운영해 왔습니다.
+              </span>
+            </p>
+
+            <div class="hero-tags">
+              <div class="tag-pill">
+                <span>Core</span>
+                <span class="en">DevOps · Backend · AWS</span>
+                <span class="ko hidden">DevOps · 백엔드 · AWS</span>
+              </div>
+              <div class="tag-pill">
+                <span>Real-time</span>
+                <span class="en">WebSocket · NGINX · Docker</span>
+                <span class="ko hidden">WebSocket · NGINX · Docker</span>
+              </div>
+              <div class="tag-pill">
+                <span>LLM</span>
+                <span class="en">OpenAI GPT chat translation</span>
+                <span class="ko hidden">OpenAI GPT 실시간 채팅 번역</span>
+              </div>
+            </div>
+
+            <div class="hero-links">
+              <a href="/resume.pdf" class="btn-primary">
+                <span class="en">Download Resume</span>
+                <span class="ko hidden">이력서 다운로드</span>
+              </a>
+              <a href="https://github.com/rocher71" target="_blank" rel="noreferrer" class="btn-ghost">
+                <span>GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/yejin-kim-7b4078274" target="_blank" rel="noreferrer" class="btn-ghost">
+                <span>LinkedIn</span>
+              </a>
+            </div>
+
+            <p class="hero-contact-line">
+              <span class="en">
+                📞 (+82) 10-8399-7482 · ✉️
+                <a href="mailto:qja086351@naver.com">qja086351@naver.com</a>
+              </span>
+              <span class="ko hidden">
+                📞 (+82) 10-8399-7482 · ✉️
+                <a href="mailto:qja086351@naver.com">qja086351@naver.com</a>
+              </span>
+            </p>
+          </div>
+
+          <div class="hero-right">
+            <div class="profile-card">
+              <div class="profile-avatar-wrapper">
+                <div class="profile-avatar-inner">
+                  <small>
+                    Your<br />
+                    profile<br />
+                    photo here
+                  </small>
+                </div>
+              </div>
+              <div>
+                <div class="profile-text-main">
+                  <span class="en">Based in Korea · Working in production</span>
+                  <span class="ko hidden">한국 기반 · 실제 서비스 운영 경험</span>
+                </div>
+                <div class="profile-text-sub">
+                  <span class="en">
+                    From Silicon Valley internship to running DuckOn in the wild with 1,000 monthly active users.
+                  </span>
+                  <span class="ko hidden">
+                    실리콘밸리 인턴십부터, 약 1,000 MAU를 가진 DuckOn 실서비스 운영까지 경험했습니다.
+                  </span>
+                </div>
+                <div class="profile-meta">
+                  <span class="en">DUCKON · REAL-TIME VIDEO & CHAT</span>
+                  <span class="ko hidden">DUCKON · 실시간 영상 & 채팅</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="hero-highlight">
+              <div class="hero-highlight-title">
+                <span class="en">DuckOn Infrastructure Snapshot</span>
+                <span class="ko hidden">DuckOn 인프라 스냅샷</span>
+                <span>2025</span>
+              </div>
+              <p class="muted" style="font-size: 12px; line-height: 1.6;">
+                <span class="en">
+                  End-to-end environment ownership: AWS, Docker, NGINX, CI/CD, and database performance tuning – built and
+                  operated by a single engineer.
+                </span>
+                <span class="ko hidden">
+                  AWS, Docker, NGINX, CI/CD, DB 튜닝까지 전 과정을 한 명의 엔지니어가 설계·운영하는
+                  엔드투엔드 환경 경험.
+                </span>
+              </p>
+              <div class="hero-highlight-metrics">
+                <div class="metric-chip">
+                  <div class="metric-value">2</div>
+                  <div class="metric-label">
+                    <span class="en">Environments</span>
+                    <span class="ko hidden">환경 수 (dev/prod)</span>
+                  </div>
+                </div>
+                <div class="metric-chip">
+                  <div class="metric-value">10,000</div>
+                  <div class="metric-label">
+                    <span class="en">Req/sec Load Test</span>
+                    <span class="ko hidden">초당 10,000 요청 부하 테스트</span>
+                  </div>
+                </div>
+                <div class="metric-chip">
+                  <div class="metric-value">90%</div>
+                  <div class="metric-label">
+                    <span class="en">TTFB / LCP Cut</span>
+                    <span class="ko hidden">TTFB / LCP 약 90% 단축</span>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="section" id="projects">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <span class="en">Projects</span>
+            <span class="ko hidden">프로젝트</span>
+          </div>
+          <p class="section-subtitle">
+            <span class="en">What I’ve shipped and actually run.</span>
+            <span class="ko hidden">직접 출시하고 운영해 본 프로젝트들.</span>
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- DuckOn main project card -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="en">DuckOn – Live Streaming & Meme Community Platform</span>
+                <span class="ko hidden">DuckOn – 실시간 스트리밍 & 밈 커뮤니티 플랫폼</span>
+              </h3>
+              <span class="card-badge">
+                <span class="en">Jun 2025 – Present</span>
+                <span class="ko hidden">2025년 6월 – 현재</span>
+              </span>
+            </div>
+
+            <div class="card-links">
+              <a href="https://duckon.site" target="_blank" rel="noreferrer" class="chip-link">
+                <span>duckon.site</span>
+                <span class="en">Live service</span>
+                <span class="ko hidden">라이브 서비스</span>
+              </a>
+              <a href="https://memeduck.site" target="_blank" rel="noreferrer" class="chip-link">
+                <span>memeduck.site</span>
+                <span class="en">Meme community</span>
+                <span class="ko hidden">밈 커뮤니티</span>
+              </a>
+            </div>
+
+            <p class="card-body">
+              <span class="en">
+                Designed and operated end-to-end infrastructure and backend for DuckOn, including AWS architecture, CI/CD,
+                and real-time chat & streaming features for global K-pop fans.
+              </span>
+              <span class="ko hidden">
+                DuckOn의 AWS 인프라, CI/CD, 실시간 채팅·스트리밍 기능까지
+                전 구간을 설계·운영하며 글로벌 K-POP 팬들을 위한 서비스를 만들었습니다.
+              </span>
+            </p>
+
+            <div class="card-tech">
+              <span class="tech-pill">Java · Spring Boot</span>
+              <span class="tech-pill">MySQL · MongoDB · Redis</span>
+              <span class="tech-pill">Docker · GitLab CI/CD</span>
+              <span class="tech-pill">NGINX Reverse Proxy</span>
+              <span class="tech-pill">AWS EC2 · S3 · CloudFront</span>
+              <span class="tech-pill">OpenAI GPT API</span>
+            </div>
+
+            <div class="card-actions">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-duckon"
+              >
+                <span class="en">View details</span>
+                <span class="ko hidden">자세히 보기</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Visual card -->
+          <aside class="screenshot-card">
+            <div>
+              <div class="screenshot-label">
+                <span class="en">Visual</span>
+                <span class="ko hidden">비주얼</span>
+              </div>
+              <div class="screenshot-title">
+                <span class="en">DuckOn Live Room & Meme Feed</span>
+                <span class="ko hidden">DuckOn 라이브 룸 & 밈 피드</span>
+              </div>
+            </div>
+            <div class="screenshot-box">
+              <span class="en">
+                Add a wide DuckOn screenshot here – live room, chat, or meme feed.
+                <br /><br />
+                Recommended ratio: 16:9 or 4:3.
+              </span>
+              <span class="ko hidden">
+                여기 DuckOn 라이브 룸, 채팅, 밈 피드 등 화면을 캡처한 스크린샷을 넣어주세요.
+                <br /><br />
+                권장 비율: 16:9 또는 4:3.
+              </span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE + AWARDS -->
+      <section class="section" id="experience">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <span class="en">Experience & Awards</span>
+            <span class="ko hidden">경력 & 수상</span>
+          </div>
+          <p class="section-subtitle">
+            <span class="en">From Silicon Valley internship to award-winning projects.</span>
+            <span class="ko hidden">실리콘밸리 인턴십부터 수상 프로젝트까지.</span>
+          </p>
+        </div>
+
+        <div class="two-col-grid">
+          <!-- Experience -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="en">Experience</span>
+                <span class="ko hidden">경력</span>
+              </h3>
+              <span class="card-badge">
+                <span class="en">XL8 · San Jose, CA</span>
+                <span class="ko hidden">XL8 · 미국 샌호세</span>
+              </span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-marker-wrapper">
+                  <div class="timeline-marker"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-title">
+                    <span class="en">Software Engineering Intern</span>
+                    <span class="ko hidden">소프트웨어 엔지니어 인턴</span>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="en">Jul 2023 – Dec 2023</span>
+                    <span class="ko hidden">2023년 7월 – 2023년 12월</span>
+                  </div>
+                  <p class="timeline-summary">
+                    <span class="en">
+                      Worked on AI subtitle editing web service (React/Redux) and learned production-scale frontend workflow.
+                    </span>
+                    <span class="ko hidden">
+                      React/Redux 기반 AI 자막 편집 서비스 개발에 참여하며
+                      프로덕션 규모 프론트엔드 워크플로를 경험했습니다.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-experience"
+              >
+                <span class="en">View details</span>
+                <span class="ko hidden">경력 자세히 보기</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Awards -->
+          <article class="card" id="awards">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="en">Awards & Honors</span>
+                <span class="ko hidden">수상 경력</span>
+              </h3>
+              <span class="card-badge">
+                <span class="en">Selected highlights</span>
+                <span class="ko hidden">주요 수상</span>
+              </span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-marker-wrapper">
+                  <div class="timeline-marker"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-title">
+                    <span class="en">Samsung SW AI Academy Special Project</span>
+                    <span class="ko hidden">삼성 청년 SW 아카데미 특화 프로젝트</span>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="en">2nd Place · Banking app for foreign residents · Oct 2025</span>
+                    <span class="ko hidden">2위 · 외국인 거주자 대상 뱅킹 앱 · 2025년 10월</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-marker-wrapper">
+                  <div class="timeline-marker"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-title">
+                    <span class="en">Samsung SW AI Academy Joint Project</span>
+                    <span class="ko hidden">삼성 청년 SW 아카데미 공통 프로젝트</span>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="en">1st Place · Real-time video & chat · Aug 2025</span>
+                    <span class="ko hidden">1위 · 실시간 영상 & 채팅 서비스 · 2025년 8월</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-marker-wrapper">
+                  <div class="timeline-marker"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-title">
+                    <span class="en">Inha University Capstone Design Fair</span>
+                    <span class="ko hidden">인하대학교 캡스톤 디자인 페어</span>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="en">2nd Place · Mutual text/voice translation app · Dec 2024</span>
+                    <span class="ko hidden">2위 · 텍스트·음성 상호 번역 앱 · 2024년 12월</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-marker-wrapper">
+                  <div class="timeline-marker"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-title">
+                    <span class="en">Silicon Valley Koreans Hackathon</span>
+                    <span class="ko hidden">실리콘밸리 한인 해커톤</span>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="en">2nd Place · “Know Your Neighbors” · Nov 2023</span>
+                    <span class="ko hidden">2위 · “Know Your Neighbors” · 2023년 11월</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-awards"
+              >
+                <span class="en">View all details</span>
+                <span class="ko hidden">수상 이력 자세히 보기</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CERTIFICATIONS / LANG / EDUCATION / SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <span class="en">Skills & Background</span>
+            <span class="ko hidden">기술 스택 & 이력</span>
+          </div>
+          <p class="section-subtitle">
+            <span class="en">High-level overview — tap cards to see details.</span>
+            <span class="ko hidden">요약 정보만 표시됩니다. 카드 클릭 시 자세한 내용을 볼 수 있습니다.</span>
+          </p>
+        </div>
+
+        <!-- Certifications & Language & Education -->
+        <div class="grid-3" style="margin-bottom: 16px;">
+          <!-- Certifications -->
+          <div class="skill-block">
+            <div class="skill-block-title">
+              <span class="en">Certifications</span>
+              <span class="ko hidden">자격증</span>
+            </div>
+            <p class="small-muted">
+              <span class="en">AWS SAA · SQLD</span>
+              <span class="ko hidden">AWS SAA · SQLD</span>
+            </p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-certifications"
+              >
+                <span class="en">View details</span>
+                <span class="ko hidden">자세히 보기</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Language -->
+          <div class="skill-block">
+            <div class="skill-block-title">
+              <span class="en">Language Proficiency</span>
+              <span class="ko hidden">어학 능력</span>
+            </div>
+            <p class="small-muted">
+              <span class="en">OPIc AL · TOEIC 945</span>
+              <span class="ko hidden">OPIc AL · TOEIC 945</span>
+            </p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-language"
+              >
+                <span class="en">View details</span>
+                <span class="ko hidden">자세히 보기</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="skill-block">
+            <div class="skill-block-title">
+              <span class="en">Education</span>
+              <span class="ko hidden">학력</span>
+            </div>
+            <p class="small-muted">
+              <span class="en">Inha Univ. CS · Taylor Univ. exchange</span>
+              <span class="ko hidden">인하대 컴퓨터공학 · 미국 Taylor Univ. 교환</span>
+            </p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-education"
+              >
+                <span class="en">View details</span>
+                <span class="ko hidden">자세히 보기</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech stacks (summary only on main) -->
+        <div class="two-col-grid">
+          <!-- Technical Skills -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="en">Technical Skills</span>
+                <span class="ko hidden">기술 스택</span>
+              </h3>
+              <span class="card-badge">
+                <span class="en">Core stack</span>
+                <span class="ko hidden">핵심 스택</span>
+              </span>
+            </div>
+
+            <p class="small-muted">
+              <span class="en">Java · Spring Boot · SQL as core backend stack.</span>
+              <span class="ko hidden">Java · Spring Boot · SQL 중심 백엔드 스택.</span>
+            </p>
+
+            <div class="card-actions" style="margin-top: 10px;">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-techskills"
+              >
+                <span class="en">View detailed stack</span>
+                <span class="ko hidden">상세 스택 보기</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Infrastructure & Tools -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="en">Infrastructure & Tools</span>
+                <span class="ko hidden">인프라 & 도구</span>
+              </h3>
+              <span class="card-badge">
+                <span class="en">Shipping & operating</span>
+                <span class="ko hidden">운영 중심</span>
+              </span>
+            </div>
+
+            <p class="small-muted">
+              <span class="en">AWS, Docker, NGINX, GitLab CI/CD, Linux focused DevOps.</span>
+              <span class="ko hidden">AWS, Docker, NGINX, GitLab CI/CD, Linux 기반 DevOps 역량.</span>
+            </p>
+
+            <div class="card-actions" style="margin-top: 10px;">
+              <button
+                class="chip-link js-modal-open"
+                type="button"
+                data-modal-target="modal-infra"
+              >
+                <span class="en">View detailed tools</span>
+                <span class="ko hidden">상세 도구 보기</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <span class="en">Contact</span>
+            <span class="ko hidden">연락처</span>
+          </div>
+          <p class="section-subtitle">
+            <span class="en">Let’s talk about DevOps, real-time systems, or new ideas.</span>
+            <span class="ko hidden">DevOps, 실시간 시스템, 새로운 아이디어에 대해 언제든지 이야기해요.</span>
+          </p>
+        </div>
+
+        <div class="card">
+          <p class="muted" style="font-size: 13px; margin-bottom: 10px;">
+            <span class="en">
+              I’m open to backend & DevOps roles where I can own infrastructure, improve performance, and ship features with a
+              clear impact on real users.
+            </span>
+            <span class="ko hidden">
+              인프라를 주도적으로 설계·운영하고, 성능을 개선하며, 실제 사용자에게 영향을 주는 기능을 만드는
+              백엔드·DevOps 포지션에 관심이 있습니다.
+            </span>
+          </p>
+
+          <div class="pill-group">
+            <div>
+              <div class="pill-label">
+                <span class="en">Email</span>
+                <span class="ko hidden">이메일</span>
+              </div>
+              <a href="mailto:qja086351@naver.com" class="chip-link">qja086351@naver.com</a>
+            </div>
+            <div>
+              <div class="pill-label">
+                <span class="en">Phone</span>
+                <span class="ko hidden">전화번호</span>
+              </div>
+              <span class="chip-link">(+82) 10-8399-7482</span>
+            </div>
+            <div>
+              <div class="pill-label">
+                <span class="en">Links</span>
+                <span class="ko hidden">링크</span>
+              </div>
+              <a href="https://github.com/rocher71" target="_blank" rel="noreferrer" class="chip-link">GitHub</a>
+              <a href="https://www.linkedin.com/in/yejin-kim-7b4078274" target="_blank" rel="noreferrer" class="chip-link">
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div>
+          <span class="en">© <span id="year"></span> Yejin Kim. Built with pure HTML & CSS.</span>
+          <span class="ko hidden">© <span id="year-ko"></span> 김예진. 순수 HTML & CSS로 제작.</span>
+        </div>
+        <div class="footer-links">
+          <a href="#top">
+            <span class="en">Back to top</span>
+            <span class="ko hidden">맨 위로</span>
+          </a>
+          <a href="https://duckon.site" target="_blank" rel="noreferrer">DuckOn</a>
+          <a href="https://memeduck.site" target="_blank" rel="noreferrer">MemeDuck</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- DUCKON DETAIL MODAL -->
+  <div id="modal-duckon" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">
+            <span class="en">DuckOn – Live Streaming & Meme Community Platform</span>
+            <span class="ko hidden">DuckOn – 실시간 스트리밍 & 밈 커뮤니티 플랫폼</span>
+            <span class="modal-badge">
+              <span class="en">Jun 2025 – Present</span>
+              <span class="ko hidden">2025년 6월 – 현재</span>
+            </span>
+          </div>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-duckon"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            Led the entire DevOps and backend architecture for DuckOn: designed AWS infrastructure, implemented CI/CD
+            with GitLab, and automated zero-downtime deployments. Built separate production & development environments
+            using Docker, EC2, and environment-specific pipelines.
+          </span>
+          <span class="ko hidden">
+            DuckOn의 백엔드 및 DevOps 전체 아키텍처를 설계했습니다. AWS 인프라를 설계하고 GitLab 기반 CI/CD를 구축해
+            무중단 배포를 자동화했으며, Docker와 EC2를 활용해 운영/개발 환경을 분리하고 환경별 파이프라인을 구성했습니다.
+          </span>
+        </p>
+
+        <p>
+          <span class="en">
+            Migrated frontend delivery to <strong>S3 + CloudFront</strong>, improving TTFB and LCP by an average of
+            <strong>90%</strong> via CDN caching, compression, and cache invalidation strategies. Configured NGINX
+            reverse proxy, SSL termination, rate limiting, and multi-domain routing for
+            <span class="mono">duckon.site</span> and <span class="mono">memeduck.site</span>.
+          </span>
+          <span class="ko hidden">
+            프론트엔드 정적 리소스를 <strong>S3 + CloudFront</strong>로 이전해 CDN 캐싱, 압축, 캐시 무효화 전략을 적용함으로써
+            평균 <strong>90%</strong> 수준의 TTFB/LCP 개선을 이뤄냈습니다. 또한 NGINX 리버스 프록시, SSL 종단, rate limiting,
+            <span class="mono">duckon.site</span> / <span class="mono">memeduck.site</span> 멀티 도메인 라우팅을 구성했습니다.
+          </span>
+        </p>
+
+        <p>
+          <span class="en">
+            Implemented real-time in-room chat translation using the <strong>OpenAI GPT API</strong>, enabling seamless
+            multilingual communication between global fans. Developed backend features including authentication, email
+            verification, profile updates, and database query optimization.
+          </span>
+          <span class="ko hidden">
+            <strong>OpenAI GPT API</strong>를 활용해 실시간 채팅 번역 기능을 구현하여, 전 세계 팬들이 언어와 관계없이 소통할 수 있는
+            환경을 만들었습니다. 그 외에도 인증, 이메일 인증, 프로필 수정, 쿼리 최적화 등 핵심 백엔드 기능을 구현·개선했습니다.
+          </span>
+        </p>
+
+        <p>
+          <span class="en">
+            Handled GitLab runner disk exhaustion by redesigning build pipelines and Docker layer reuse, while maintaining
+            production reliability as new features were shipped.
+          </span>
+          <span class="ko hidden">
+            GitLab Runner 디스크 용량 부족 문제를 빌드 파이프라인 재설계와 Docker 레이어 재사용 전략으로 해결했고,
+            새로운 기능을 빠르게 출시하면서도 운영 환경의 안정성을 유지했습니다.
+          </span>
+        </p>
+
+        <div class="modal-tech">
+          <span class="tech-pill">Java · Spring Boot</span>
+          <span class="tech-pill">MySQL · MongoDB · Redis</span>
+          <span class="tech-pill">Docker · GitLab CI/CD</span>
+          <span class="tech-pill">NGINX Reverse Proxy</span>
+          <span class="tech-pill">AWS EC2 · S3 · CloudFront</span>
+          <span class="tech-pill">OpenAI GPT API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE DETAIL MODAL -->
+  <div id="modal-experience" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">
+            <span class="en">Experience – XL8, San Jose</span>
+            <span class="ko hidden">경력 – XL8, 샌호세</span>
+            <span class="modal-badge">
+              <span class="en">Jul 2023 – Dec 2023</span>
+              <span class="ko hidden">2023년 7월 – 12월</span>
+            </span>
+          </div>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-experience"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            At XL8, I joined a Silicon Valley team building an AI-powered subtitle editing platform used by real customers.
+            I contributed to a React/Redux-based web editor and helped maintain a Draft.js subtitle editor that integrates
+            with machine translation and speech recognition.
+          </span>
+          <span class="ko hidden">
+            XL8에서는 실제 고객이 사용하는 AI 자막 편집 플랫폼을 만드는 실리콘밸리 팀에 합류했습니다.
+            React/Redux 기반 웹 에디터 개발에 참여했고, 기계 번역·음성 인식이 연동된 Draft.js 자막 에디터를
+            프로덕션 환경에서 유지·보수했습니다.
+          </span>
+        </p>
+
+        <p>
+          <span class="en">
+            I implemented UI/UX improvements for editing flows, fixed edge cases in subtitle alignment and timeline syncing,
+            and collaborated closely with backend engineers to adjust APIs for better performance and usability.
+          </span>
+          <span class="ko hidden">
+            자막 편집 플로우의 UI/UX를 개선하고, 자막 싱크·정렬 과정에서 발생하는 엣지 케이스 버그를 해결했으며,
+            백엔드 엔지니어들과 협업해 성능과 사용성을 고려한 API 스펙 조정을 경험했습니다.
+          </span>
+        </p>
+
+        <p>
+          <span class="en">
+            Beyond coding, I learned how a production-scale React application is structured, how large teams manage
+            releases and code reviews, and how product decisions are made based on both customer feedback and technical
+            constraints.
+          </span>
+          <span class="ko hidden">
+            단순 구현을 넘어, 프로덕션 규모 React 애플리케이션 구조, 코드 리뷰·릴리즈 관리 방식, 고객 피드백과
+            기술적 제약을 동시에 고려하는 제품 의사결정 과정을 몸으로 익힌 경험이었습니다.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AWARDS DETAIL MODAL -->
+  <div id="modal-awards" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">
+            <span class="en">Awards & Honors – Details</span>
+            <span class="ko hidden">수상 경력 – 상세</span>
+          </div>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-awards"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>
+            <span class="en">Samsung SW AI Academy Special Project · 2nd Place (Oct 2025)</span>
+            <span class="ko hidden">삼성 청년 SW 아카데미 특화 프로젝트 · 2위 (2025년 10월)</span>
+          </strong>
+          <br />
+          <span class="en">
+            Designed and implemented core flows for a banking app tailored to foreign residents in Korea – including
+            onboarding, identity verification, and multi-language support. Focused on real user pain points around account
+            opening and daily financial tasks in a foreign country.
+          </span>
+          <span class="ko hidden">
+            국내 거주 외국인 고객을 위한 뱅킹 앱을 기획·구현하며, 온보딩·본인인증·다국어 지원 등 핵심 플로우를 설계했습니다.
+            낯선 나라에서의 계좌 개설과 일상 금융 업무에서 느끼는 실제 불편함을 해결하는 데 집중한 프로젝트였습니다.
+          </span>
+        </p>
+
+        <p>
+          <strong>
+            <span class="en">Samsung SW AI Academy Joint Project · 1st Place (Aug 2025)</span>
+            <span class="ko hidden">삼성 청년 SW 아카데미 공통 프로젝트 · 1위 (2025년 8월)</span>
+          </strong>
+          <br />
+          <span class="en">
+            Built a real-time synchronized video & chat service that reached around 1,000 MAU. I focused on backend and
+            DevOps – designing APIs, handling concurrent users, and optimizing performance so that live viewing and chat
+            remained smooth even under high load.
+          </span>
+          <span class="ko hidden">
+            약 1,000 MAU를 기록한 실시간 동시 시청·채팅 서비스를 개발했습니다.
+            백엔드와 DevOps를 중심으로 API 설계, 동시 접속 처리, 부하 상황에서도 끊김 없이 영상과 채팅이 동작하도록
+            성능을 최적화했습니다.
+          </span>
+        </p>
+
+        <p>
+          <strong>
+            <span class="en">Inha University Capstone Design Fair · 2nd Place (Dec 2024)</span>
+            <span class="ko hidden">인하대학교 캡스톤 디자인 페어 · 2위 (2024년 12월)</span>
+          </strong>
+          <br />
+          <span class="en">
+            Developed an accessibility-focused mutual text/voice translation app that helps users communicate across
+            language and modality barriers. I worked on both the interaction design and the integration of OCR, TTS, and
+            translation APIs.
+          </span>
+          <span class="ko hidden">
+            텍스트와 음성 간 상호 번역을 지원하는, 접근성 중심 번역 애플리케이션을 개발했습니다.
+            사용자 인터랙션 설계와 함께 OCR, TTS, 번역 API를 연동해 시각·청각 제약이 있는 사용자도 활용하기 쉬운
+            서비스를 목표로 했습니다.
+          </span>
+        </p>
+
+        <p>
+          <strong>
+            <span class="en">Silicon Valley Koreans Hackathon · 2nd Place (Nov 2023)</span>
+            <span class="ko hidden">실리콘밸리 한인 해커톤 · 2위 (2023년 11월)</span>
+          </strong>
+          <br />
+          <span class="en">
+            Created “Know Your Neighbors,” a map-based web service that visualizes local safety information through user
+            reviews. I implemented the frontend with React and Mapbox, handling marker clustering, zoom-level logic, and
+            visualizing vote-weighted safety scores.
+          </span>
+          <span class="ko hidden">
+            지역별 치안 정보를 사용자 리뷰 기반으로 지도에 시각화하는 “Know Your Neighbors” 웹 서비스를 개발했습니다.
+            React와 Mapbox를 사용해 마커 클러스터링, 줌 레벨별 표시 로직, 투표 수를 반영한 안전도 시각화를 구현했습니다.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS SECTION EXTRA MODALS -->
+
+  <!-- Certifications Modal -->
+  <div id="modal-certifications" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="en">Certifications</span>
+          <span class="ko hidden">자격증</span>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-certifications"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            I keep my infrastructure and data skills grounded with industry-recognized certifications.
+          </span>
+          <span class="ko hidden">
+            인프라와 데이터 역량을 검증하기 위해 관련 자격증을 취득했습니다.
+          </span>
+        </p>
+        <div class="modal-tech">
+          <span class="tech-pill">
+            <span class="en">AWS Solutions Architect – Associate</span>
+            <span class="ko hidden">AWS Solutions Architect – Associate</span>
+          </span>
+          <span class="tech-pill">
+            <span class="en">Issued: Sep 2025</span>
+            <span class="ko hidden">취득: 2025년 9월</span>
+          </span>
+          <span class="tech-pill">
+            <span class="en">SQLD (SQL Developer)</span>
+            <span class="ko hidden">SQLD (SQL 개발자)</span>
+          </span>
+          <span class="tech-pill">
+            <span class="en">Issued: Sep 2024</span>
+            <span class="ko hidden">취득: 2024년 9월</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Language Modal -->
+  <div id="modal-language" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="en">Language Proficiency</span>
+          <span class="ko hidden">어학 능력</span>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-language"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            Comfortable working in English-speaking environments and collaborating with global teams.
+          </span>
+          <span class="ko hidden">
+            영어로 업무 커뮤니케이션이 가능하며, 글로벌 팀과 협업해 온 경험이 있습니다.
+          </span>
+        </p>
+        <div class="modal-tech">
+          <span class="tech-pill">
+            <span class="en">OPIc · AL (Advanced Low)</span>
+            <span class="ko hidden">OPIc · AL (Advanced Low)</span>
+          </span>
+          <span class="tech-pill">
+            <span class="en">TOEIC · 945 (Sep 2024)</span>
+            <span class="ko hidden">TOEIC · 945 (2024년 9월)</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education Modal -->
+  <div id="modal-education" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="en">Education</span>
+          <span class="ko hidden">학력</span>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-education"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            My academic background combines solid CS fundamentals with international experience.
+          </span>
+          <span class="ko hidden">
+            컴퓨터공학 기반의 전공 지식과 해외 교환학생 경험을 함께 갖추고 있습니다.
+          </span>
+        </p>
+        <p>
+          <strong>Inha University</strong><br />
+          <span class="en">B.S. in Computer Science</span>
+          <span class="ko hidden">컴퓨터공학과 학사</span><br />
+          <span class="en">Mar 2019 – Feb 2025 · Incheon, Korea</span>
+          <span class="ko hidden">2019년 3월 – 2025년 2월 · 인하대학교</span>
+        </p>
+        <p>
+          <strong>Taylor University</strong><br />
+          <span class="en">Exchange Student (Computer Science)</span>
+          <span class="ko hidden">컴퓨터공학 교환학생</span><br />
+          <span class="en">Jan 2023 – Jun 2023 · Indiana, USA</span>
+          <span class="ko hidden">2023년 1월 – 6월 · 미국 인디애나</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical Skills Modal -->
+  <div id="modal-techskills" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="en">Technical Skills – Detailed Stack</span>
+          <span class="ko hidden">기술 스택 – 상세</span>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-techskills"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            I focus on backend engineering with Java and Spring Boot, designing REST APIs and data models that are easy to
+            maintain and extend.
+          </span>
+          <span class="ko hidden">
+            Java와 Spring Boot를 중심으로, 유지·확장하기 쉬운 REST API와 데이터 모델을 설계하는 백엔드 개발에 집중해 왔습니다.
+          </span>
+        </p>
+
+        <div class="skill-block" style="margin-top: 6px;">
+          <div class="skill-block-title">
+            <span class="en">Languages</span>
+            <span class="ko hidden">언어</span>
+          </div>
+          <div class="skill-list">
+            <span class="skill-chip">Java</span>
+            <span class="skill-chip">SQL</span>
+            <span class="skill-chip">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-block" style="margin-top: 8px;">
+          <div class="skill-block-title">
+            <span class="en">Backend</span>
+            <span class="ko hidden">백엔드</span>
+          </div>
+          <div class="skill-list">
+            <span class="skill-chip">Spring Boot</span>
+            <span class="skill-chip">JPA</span>
+            <span class="skill-chip">
+              <span class="en">REST API Design</span>
+              <span class="ko hidden">REST API 설계</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="skill-block" style="margin-top: 8px;">
+          <div class="skill-block-title">
+            <span class="en">Databases</span>
+            <span class="ko hidden">데이터베이스</span>
+          </div>
+          <div class="skill-list">
+            <span class="skill-chip">MySQL</span>
+            <span class="skill-chip">MongoDB</span>
+            <span class="skill-chip">Redis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Infrastructure Modal -->
+  <div id="modal-infra" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="en">Infrastructure & Tools – Detailed</span>
+          <span class="ko hidden">인프라 & 도구 – 상세</span>
+        </div>
+        <button
+          class="modal-close js-modal-close"
+          type="button"
+          data-modal-target="modal-infra"
+        >
+          <span class="en">Close</span>
+          <span class="ko hidden">닫기</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <span class="en">
+            I enjoy owning the full shipping process – from containerizing services to configuring reverse proxies and
+            monitoring production.
+          </span>
+          <span class="ko hidden">
+            서비스 컨테이너라이징부터 리버스 프록시 설정, 모니터링까지 배포 전 과정을 책임지는 것을 좋아합니다.
+          </span>
+        </p>
+
+        <div class="skill-block" style="margin-top: 6px;">
+          <div class="skill-block-title">
+            <span class="en">Cloud & DevOps</span>
+            <span class="ko hidden">클라우드 & DevOps</span>
+          </div>
+          <div class="skill-list">
+            <span class="skill-chip">AWS EC2 · S3 · CloudFront</span>
+            <span class="skill-chip">GitLab CI/CD</span>
+            <span class="skill-chip">Docker</span>
+            <span class="skill-chip">NGINX</span>
+            <span class="skill-chip">Linux</span>
+          </div>
+        </div>
+
+        <div class="skill-block" style="margin-top: 8px;">
+          <div class="skill-block-title">
+            <span class="en">Other</span>
+            <span class="ko hidden">기타</span>
+          </div>
+          <div class="skill-list">
+            <span class="skill-chip">
+              <span class="en">OpenAI API Integration</span>
+              <span class="ko hidden">OpenAI API 연동</span>
+            </span>
+            <span class="skill-chip">Git · GitHub · GitLab</span>
+            <span class="skill-chip">
+              <span class="en">System monitoring & debugging</span>
+              <span class="ko hidden">시스템 모니터링 & 디버깅</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Footer year
+      const year = new Date().getFullYear();
+      const yearEn = document.getElementById("year");
+      const yearKo = document.getElementById("year-ko");
+      if (yearEn) yearEn.textContent = year;
+      if (yearKo) yearKo.textContent = year;
+
+      // Language toggle
+      const langBtn = document.querySelector(".lang-toggle");
+      function toggleLanguage() {
+        const enElems = document.querySelectorAll(".en");
+        const koElems = document.querySelectorAll(".ko");
+        const toKorean = langBtn.textContent === "KR";
+
+        if (toKorean) {
+          enElems.forEach((el) => el.classList.add("hidden"));
+          koElems.forEach((el) => el.classList.remove("hidden"));
+          langBtn.textContent = "EN";
+        } else {
+          enElems.forEach((el) => el.classList.remove("hidden"));
+          koElems.forEach((el) => el.classList.add("hidden"));
+          langBtn.textContent = "KR";
+        }
+      }
+      if (langBtn) {
+        langBtn.addEventListener("click", toggleLanguage);
+      }
+
+      // Modal helpers
+      function openModalById(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModalById(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      // Open buttons
+      document.querySelectorAll(".js-modal-open").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-modal-target");
+          if (id) openModalById(id);
+        });
+      });
+
+      // Close buttons
+      document.querySelectorAll(".js-modal-close").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-modal-target");
+          if (id) closeModalById(id);
+        });
+      });
+
+      // Backdrop click to close
+      document.querySelectorAll(".modal-backdrop").forEach((backdrop) => {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) {
+            closeModalById(backdrop.id);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
