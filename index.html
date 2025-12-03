@@ -217,20 +217,23 @@
 
         .profile-photo {
             width: 100%;
-            max-width: 400px;
-            height: 400px;
-            border-radius: 20px;
-            object-fit: cover;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 161px;
             border: 3px solid var(--accent);
             box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
             background: var(--bg-card);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .social-links {
@@ -840,7 +843,7 @@
 
             <div class="hero-image">
                 <div class="profile-photo">
-                    <img src="https://github.com/user-attachments/assets/6616ed9d-07be-49a0-ad40-4b3b6f54e580" alt="이미지">
+                    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521218445-6616ed9d-07be-49a0-ad40-4b3b6f54e580.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002340Z&X-Amz-Expires=300&X-Amz-Signature=c7e990b321dd9534c036fc3983250f310fbd923cebb66ea83c1cc8dda2780182&X-Amz-SignedHeaders=host" alt="이미지">
                 </div>
             </div>
         </div>
@@ -1241,13 +1244,13 @@
                     <div class="en">
                         <h3>Architecture Evolution</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/2f0f31e7-03d9-4ae0-bbc3-6c60a2db68c1" alt="DuckOn Architecture Evolution">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216766-2f0f31e7-03d9-4ae0-bbc3-6c60a2db68c1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002413Z&X-Amz-Expires=300&X-Amz-Signature=f987aa7e067ca8fb33d61d9c96a36313827050d82d793bd8268f8a106c9ab72b&X-Amz-SignedHeaders=host" alt="DuckOn Architecture Evolution">
                             <figcaption>Migration from monolithic architecture to multi-cloud distributed system</figcaption>
                         </figure>
 
                         <h3>Current Infrastructure</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/356c8747-7daa-4728-b9f5-aa75d99c1a43" alt="DuckOn Infrastructure Diagram">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216767-356c8747-7daa-4728-b9f5-aa75d99c1a43.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002437Z&X-Amz-Expires=300&X-Amz-Signature=5fad1cf070393ac6705ee6c5331860f99faf52f45c4b954f26ba3aa797fef944&X-Amz-SignedHeaders=host" alt="DuckOn Infrastructure Diagram">
                             <figcaption>Complete AWS infrastructure with separate prod/dev environments, CDN, monitoring system</figcaption>
                         </figure>
 
@@ -1260,13 +1263,13 @@
                     <div class="ko hidden">
                         <h3>아키텍처 진화</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/2f0f31e7-03d9-4ae0-bbc3-6c60a2db68c1" alt="DuckOn 아키텍처 진화">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216766-2f0f31e7-03d9-4ae0-bbc3-6c60a2db68c1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002413Z&X-Amz-Expires=300&X-Amz-Signature=f987aa7e067ca8fb33d61d9c96a36313827050d82d793bd8268f8a106c9ab72b&X-Amz-SignedHeaders=host" alt="DuckOn 아키텍처 진화">
                             <figcaption>모놀리식 구조에서 멀티 클라우드 분산 시스템으로 마이그레이션</figcaption>
                         </figure>
 
                         <h3>현재 인프라 구성</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/356c8747-7daa-4728-b9f5-aa75d99c1a43" alt="DuckOn 인프라 다이어그램">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216767-356c8747-7daa-4728-b9f5-aa75d99c1a43.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002437Z&X-Amz-Expires=300&X-Amz-Signature=5fad1cf070393ac6705ee6c5331860f99faf52f45c4b954f26ba3aa797fef944&X-Amz-SignedHeaders=host" alt="DuckOn 인프라 다이어그램">
                             <figcaption>운영/개발 환경 분리, CDN, 모니터링 시스템을 포함한 완전한 AWS 인프라</figcaption>
                         </figure>
 
@@ -1316,7 +1319,7 @@
 
                         <h3 style="margin-top: 2rem;">CloudFront Performance Metrics</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/7d639cd7-dd12-4fa9-be61-841b7878e2b2" alt="CloudFront Performance Improvement">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216769-7d639cd7-dd12-4fa9-be61-841b7878e2b2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002503Z&X-Amz-Expires=300&X-Amz-Signature=c15644fb781bea15e597eca0a78ef18280e67af62edda563780d57f27405fd20&X-Amz-SignedHeaders=host" alt="CloudFront Performance Improvement">
                             <figcaption>TTFB and LCP improvements before/after CloudFront migration</figcaption>
                         </figure>
                     </div>
@@ -1358,7 +1361,7 @@
 
                         <h3 style="margin-top: 2rem;">CloudFront 성능 지표</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/7d639cd7-dd12-4fa9-be61-841b7878e2b2" alt="CloudFront 성능 개선">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216769-7d639cd7-dd12-4fa9-be61-841b7878e2b2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002503Z&X-Amz-Expires=300&X-Amz-Signature=c15644fb781bea15e597eca0a78ef18280e67af62edda563780d57f27405fd20&X-Amz-SignedHeaders=host" alt="CloudFront 성능 개선">
                             <figcaption>CloudFront 마이그레이션 전후 TTFB 및 LCP 개선 결과</figcaption>
                         </figure>
                     </div>
@@ -1369,19 +1372,19 @@
                     <div class="en">
                         <h3>Real-time AI Translation Chat</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/020e8fa6-d96c-4d65-bf01-83d2c247d7a7" alt="AI Translation Chat">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216768-020e8fa6-d96c-4d65-bf01-83d2c247d7a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002527Z&X-Amz-Expires=300&X-Amz-Signature=a1ce24edce8771e1cefa0cdfee2077855f43047305d6b55eb6998f75c6e208bc&X-Amz-SignedHeaders=host" alt="AI Translation Chat">
                             <figcaption>OpenAI GPT API-powered real-time translation enabling multilingual communication</figcaption>
                         </figure>
 
                         <h3>Infrastructure Monitoring Dashboard</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/5732ae5a-4934-4615-a773-e00a54883d27" alt="Monitoring System">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216765-5732ae5a-4934-4615-a773-e00a54883d27.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002547Z&X-Amz-Expires=300&X-Amz-Signature=bd857eeb390adee3186394240462a621fa142f80b1212136d0d787aff8fff461&X-Amz-SignedHeaders=host" alt="Monitoring System">
                             <figcaption>Real-time error alerts and daily infrastructure health reports via Mattermost</figcaption>
                         </figure>
 
                         <h3>MemeDuck Platform</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/b52abd38-2239-41de-8cc8-e6f49dc98e3a" alt="MemeDuck Platform">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216770-b52abd38-2239-41de-8cc8-e6f49dc98e3a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002603Z&X-Amz-Expires=300&X-Amz-Signature=d48e45b86990406ca08e6e156da7a183c53548e2c59abe85839c55e2764db89b&X-Amz-SignedHeaders=host" alt="MemeDuck Platform">
                             <figcaption>K-pop meme community platform with upload, search, browsing features</figcaption>
                         </figure>
                     </div>
@@ -1389,19 +1392,19 @@
                     <div class="ko hidden">
                         <h3>실시간 AI 번역 채팅</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/020e8fa6-d96c-4d65-bf01-83d2c247d7a7" alt="AI 번역 채팅">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216768-020e8fa6-d96c-4d65-bf01-83d2c247d7a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002527Z&X-Amz-Expires=300&X-Amz-Signature=a1ce24edce8771e1cefa0cdfee2077855f43047305d6b55eb6998f75c6e208bc&X-Amz-SignedHeaders=host" alt="AI 번역 채팅">
                             <figcaption>OpenAI GPT API 기반 실시간 번역으로 다국어 소통 지원</figcaption>
                         </figure>
 
                         <h3>인프라 모니터링 대시보드</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/5732ae5a-4934-4615-a773-e00a54883d27" alt="모니터링 시스템">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216765-5732ae5a-4934-4615-a773-e00a54883d27.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002547Z&X-Amz-Expires=300&X-Amz-Signature=bd857eeb390adee3186394240462a621fa142f80b1212136d0d787aff8fff461&X-Amz-SignedHeaders=host" alt="모니터링 시스템">
                             <figcaption>Mattermost를 통한 실시간 에러 알림 및 일일 인프라 상태 리포트</figcaption>
                         </figure>
 
                         <h3>MemeDuck 플랫폼</h3>
                         <figure class="detail-image">
-                            <img src="https://github.com/user-attachments/assets/b52abd38-2239-41de-8cc8-e6f49dc98e3a" alt="MemeDuck 플랫폼">
+                            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216770-b52abd38-2239-41de-8cc8-e6f49dc98e3a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002603Z&X-Amz-Expires=300&X-Amz-Signature=d48e45b86990406ca08e6e156da7a183c53548e2c59abe85839c55e2764db89b&X-Amz-SignedHeaders=host" alt="MemeDuck 플랫폼">
                             <figcaption>K-pop 밈 커뮤니티 플랫폼 - 업로드, 검색, 탐색 기능</figcaption>
                         </figure>
                     </div>
