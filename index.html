@@ -262,6 +262,39 @@
             border-color: var(--accent-light);
         }
 
+        /* Hero Quick Facts Card */
+        .hero-facts {
+            margin-top: 1.5rem;
+            background: rgba(30, 41, 59, 0.55);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-facts .fact {
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-facts .fact .fact-icon {
+            flex-shrink: 0;
+        }
+
+        .hero-facts .fact strong {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
         /* Section Styles */
         section {
             padding: 5rem 2rem;
@@ -788,6 +821,7 @@
                 <li><a href="#home" class="en">Home</a><a href="#home" class="ko hidden">홈</a></li>
                 <li><a href="#projects" class="en">Projects</a><a href="#projects" class="ko hidden">프로젝트</a></li>
                 <li><a href="#experience" class="en">Experience</a><a href="#experience" class="ko hidden">경력</a></li>
+                <li><a href="#activities" class="en">Activities</a><a href="#activities" class="ko hidden">대외활동</a></li>
                 <li><a href="#awards" class="en">Awards</a><a href="#awards" class="ko hidden">수상</a></li>
                 <li><a href="#skills" class="en">Skills</a><a href="#skills" class="ko hidden">기술</a></li>
                 <li><a href="#contact" class="en">Contact</a><a href="#contact" class="ko hidden">연락</a></li>
@@ -846,6 +880,24 @@
                     <img src="./assets/img/profile.jpeg" alt="이미지">
                     <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521218445-6616ed9d-07be-49a0-ad40-4b3b6f54e580.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002340Z&X-Amz-Expires=300&X-Amz-Signature=c7e990b321dd9534c036fc3983250f310fbd923cebb66ea83c1cc8dda2780182&X-Amz-SignedHeaders=host" alt="이미지"> -->
                 </div>
+
+                <div class="hero-facts">
+                    <div class="fact">
+                        <span class="fact-icon">🎓</span>
+                        <span class="en"><strong>Inha University</strong> — B.S. Computer Science<br>SSAFY Java Track (2025)</span>
+                        <span class="ko hidden"><strong>인하대학교</strong> 컴퓨터공학과 학사<br>SSAFY 자바 전공 트랙 수료 (2025)</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-icon">🚀</span>
+                        <span class="en"><strong>Currently</strong> — Building K-Bap<br>AI SW Maestro Program, 2026</span>
+                        <span class="ko hidden"><strong>현재</strong> — K-Bap 개발 중<br>AI SW 마에스트로 과정, 2026</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-icon">🌐</span>
+                        <span class="en">OPIc AL · TOEIC 945</span>
+                        <span class="ko hidden">OPIc AL · TOEIC 945</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -855,6 +907,27 @@
         <h2><span class="en">Featured Projects</span><span class="ko hidden">주요 프로젝트</span></h2>
 
         <div class="projects-grid">
+            <div class="project-card" onclick="openModal('kbap-modal')">
+                <h3>K-Bap</h3>
+                <p class="en">AI-Powered Food Safety App for Foreigners in Korea</p>
+                <p class="ko hidden">외국인을 위한 AI 음식 안전 앱</p>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Kotlin · Spring</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Spec-Driven Dev</span>
+                    <span class="tech-tag">Claude AI</span>
+                </div>
+
+                <p class="en" style="margin-top: 1rem; color: var(--text-secondary);">
+                    Designed the spec-driven dev process & AI collaboration governance for a 2-person team. Click to see details →
+                </p>
+                <p class="ko hidden" style="margin-top: 1rem; color: var(--text-secondary);">
+                    2인 팀의 명세 주도 개발 프로세스와 AI 협업 거버넌스를 설계했습니다. 클릭하여 자세히 보기 →
+                </p>
+            </div>
+
             <div class="project-card" onclick="openModal('duckon-modal')">
                 <h3>DuckOn</h3>
                 <p class="en">Live Streaming & Meme Community Platform</p>
@@ -901,6 +974,40 @@
         </div>
     </section>
 
+    <!-- Activities Section -->
+    <section id="activities">
+        <h2><span class="en">Activities</span><span class="ko hidden">대외활동</span></h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3 class="en">Developer, YAPP</h3>
+                <h3 class="ko hidden">YAPP 개발자</h3>
+                <div class="date en">Corporate-backed IT club | Nov 2022 - Feb 2023</div>
+                <div class="date ko hidden">기업형 연합 IT 동아리 | 2022년 11월 - 2023년 2월</div>
+                <p class="en">Built an Android WebView screen with React and Recoil.</p>
+                <p class="ko hidden">React, Recoil을 사용하여 안드로이드 네이티브 어플리케이션 내 웹뷰 화면 구현.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3 class="en">Developer, CMC</h3>
+                <h3 class="ko hidden">CMC 개발자</h3>
+                <div class="date en">Central MakeUs, app-launch club | Apr 2022 - Jul 2022</div>
+                <div class="date ko hidden">수익형 앱 런칭 동아리 Central MakeUs | 2022년 4월 - 7월</div>
+                <p class="en">Shipped a hybrid app built with React Native and Redux Toolkit.</p>
+                <p class="ko hidden">React Native와 Redux Toolkit을 통해 개발한 하이브리드 어플리케이션 출시.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3 class="en">Frontend Developer, WoozLabs (Monomail)</h3>
+                <h3 class="ko hidden">WoozLabs (Monomail) 프론트엔드 개발자</h3>
+                <div class="date en">Team side project | Jun 2024 - Dec 2024</div>
+                <div class="date ko hidden">개발 프로젝트 팀 | 2024년 6월 - 12월</div>
+                <p class="en">Built a React/Electron desktop app for Gemini-assisted email drafting — signature management plus AI-powered tone/summary editing.</p>
+                <p class="ko hidden">Gemini를 활용한 이메일 관리·작성 데스크탑 앱(React, Electron) 개발. 서명 관리 및 AI 기반 작성 내용 검정·요약·톤 변경 기능 구현.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Awards Section -->
     <section id="awards">
         <h2><span class="en">Awards & Honors</span><span class="ko hidden">수상 경력</span></h2>
@@ -943,10 +1050,19 @@
             </div>
 
             <div class="timeline-item">
+                <h3 class="en">IGRUS IT Competition – 1st Place</h3>
+                <h3 class="ko hidden">IGRUS IT 경진대회 – 1위</h3>
+                <div class="date en">Incheon, Korea | Oct 2020</div>
+                <div class="date ko hidden">인천 | 2020년 10월</div>
+                <p class="en">Built a Unity-based 3D game introducing the CS department to incoming freshmen.</p>
+                <p class="ko hidden">컴퓨터공학과 신입생들을 위한 Unity 기반 학교 소개 3D 게임 구현.</p>
+            </div>
+
+            <div class="timeline-item">
                 <h3 class="en">Inha University Ideathon Competition – 2nd Place</h3>
                 <h3 class="ko hidden">인하대학교 아이디어톤 경진대회 – 2위 컴퓨터공학과장상</h3>
-                <div class="date en">Incheon, Korea | Nov 2020</div>
-                <div class="date ko hidden">인천 | 2020년 11월</div>
+                <div class="date en">Incheon, Korea | Mar 2020</div>
+                <div class="date ko hidden">인천 | 2020년 3월</div>
                 <p class="en">Proposed AR/VR character restoration idea using photos and videos.</p>
                 <p class="ko hidden">사진 및 영상 기반 AR/VR 인물 복원 아이디어 제안.</p>
             </div>
@@ -1074,6 +1190,202 @@
         <p class="en">&copy; 2025 Yejin Kim. Built with passion and code.</p>
         <p class="ko hidden">&copy; 2025 김예진. 열정과 코드로 만들었습니다.</p>
     </footer>
+
+    <!-- K-Bap Modal -->
+    <div id="kbap-modal" class="modal-backdrop hidden" onclick="closeModal('kbap-modal')">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <span class="en">K-Bap – AI Food Safety App</span>
+                    <span class="ko hidden">K-Bap – AI 음식 안전 앱</span>
+                </h2>
+                <button type="button" class="modal-close" onclick="closeModal('kbap-modal')">
+                    <span class="en">Close</span>
+                    <span class="ko hidden">닫기</span>
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="modal-tabs">
+                <button class="modal-tab active en" onclick="switchTab('kbap', 'overview')">Overview</button>
+                <button class="modal-tab active ko hidden" onclick="switchTab('kbap', 'overview')">프로젝트 개요</button>
+
+                <button class="modal-tab en" onclick="switchTab('kbap', 'methodology')">Methodology</button>
+                <button class="modal-tab ko hidden" onclick="switchTab('kbap', 'methodology')">개발 방법론</button>
+
+                <button class="modal-tab en" onclick="switchTab('kbap', 'ai')">AI Collaboration</button>
+                <button class="modal-tab ko hidden" onclick="switchTab('kbap', 'ai')">AI 협업</button>
+
+                <button class="modal-tab en" onclick="switchTab('kbap', 'impact')">Impact</button>
+                <button class="modal-tab ko hidden" onclick="switchTab('kbap', 'impact')">성과 & 의의</button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <!-- Overview -->
+                <div id="kbap-overview" class="modal-section active">
+                    <div class="en">
+                        <p>
+                            <strong>K-Bap</strong> is a food safety app for foreigners living in or visiting Korea. Users scan a menu,
+                            and the app judges the risk of each dish against their allergies and dietary restrictions (halal, vegetarian, etc.)
+                            using LLM-based OCR and a personalized risk engine.
+                        </p>
+                        <p><strong>Role:</strong> Product Planning & Full-stack (2-person team)</p>
+                        <p><strong>Period:</strong> Apr 2026 – Nov 2026 (AI SW Maestro Program)</p>
+                        <p><strong>Scope:</strong> MVP in 9 languages, 81 tracked ingredients</p>
+                    </div>
+                    <div class="ko hidden">
+                        <p>
+                            <strong>K-Bap</strong>은 한국에 거주하거나 방문하는 외국인을 위한 음식 안전 앱입니다. 메뉴판을 스캔하면
+                            LLM 기반 OCR로 음식을 인식하고, 사용자의 알레르기·식이 제한(할랄, 채식 등)에 따라 각 음식의 위험도를
+                            개인화해 보여줍니다.
+                        </p>
+                        <p><strong>역할:</strong> 기획 & 풀스택 (2인 팀)</p>
+                        <p><strong>기간:</strong> 2026년 4월 – 11월 (AI SW 마에스트로 과정)</p>
+                        <p><strong>범위:</strong> MVP 9개 언어, 회피 재료 81종</p>
+                    </div>
+
+                    <div class="modal-tech">
+                        <span class="tech-tag">React Native · Expo</span>
+                        <span class="tech-tag">Kotlin · Spring Boot</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">OpenAPI Contract-First</span>
+                        <span class="tech-tag">LLM OCR</span>
+                        <span class="tech-tag">Claude Code (AI pair)</span>
+                    </div>
+
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-item-title">114 / 100%</div>
+                            <div class="result-item-body en">Frontend commits co-authored with AI, all traceable to a session</div>
+                            <div class="result-item-body ko hidden">FE 커밋 전부 AI 공동저작 + 세션 URL로 역추적 가능</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-title en">37 FR / 71 Tasks</div>
+                            <div class="result-item-title ko hidden">기능요구 37개 / 태스크 71개</div>
+                            <div class="result-item-body en">Requirements decomposed into parallelizable, labeled tasks</div>
+                            <div class="result-item-body ko hidden">병렬 가능 여부·담당·스토리로 3중 라벨링해 분해</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-title en">false-safe 0%</div>
+                            <div class="result-item-title ko hidden">false-safe 0%</div>
+                            <div class="result-item-body en">Safety-critical success criterion, enforced by tests + human review</div>
+                            <div class="result-item-body ko hidden">테스트+사람 검증으로 강제한 안전 크리티컬 성공 기준</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Methodology -->
+                <div id="kbap-methodology" class="modal-section">
+                    <div class="en">
+                        <h3>Spec-Driven Development</h3>
+                        <p>
+                            A dedicated spec repo acts as the single source of truth. Every feature goes through
+                            <strong>specify → clarify → plan → tasks → implement</strong>, with a human approval gate between
+                            each stage — AI cannot advance the pipeline on its own.
+                        </p>
+                        <ul>
+                            <li>Requirements clarified through 3 structured Q&A sessions (7 decisions recorded in the spec itself)</li>
+                            <li>A 16-item spec-quality checklist gates entry into the planning stage</li>
+                            <li>Tasks are triple-labeled (parallelizable? / repo / user story) so FE/BE split is designed before coding starts</li>
+                        </ul>
+
+                        <h3>Living "Constitution"</h3>
+                        <p>
+                            The team's ground rules are written as a version-controlled constitution (6 principles, semantically versioned).
+                            When a meeting decision changes a rule — e.g. moving the API contract's source of truth from the spec repo to
+                            backend-generated Swagger after we hit a real contract drift — the constitution is bumped, and the change
+                            propagates to every downstream doc in the same commit trail.
+                        </p>
+                    </div>
+                    <div class="ko hidden">
+                        <h3>명세 주도 개발 (Spec-Driven Development)</h3>
+                        <p>
+                            별도의 명세 레포를 단일 진실(SSOT)로 두고, 모든 기능이
+                            <strong>specify → clarify → plan → tasks → implement</strong> 파이프라인을 거칩니다.
+                            각 단계 사이에 사람 승인 게이트가 있어 AI가 임의로 다음 단계로 넘어갈 수 없습니다.
+                        </p>
+                        <ul>
+                            <li>구조화된 Q&A 세션 3회로 요구사항을 확정 (결정 7건을 명세에 직접 기록)</li>
+                            <li>16개 항목의 명세 품질 체크리스트를 통과해야 계획 단계 진입</li>
+                            <li>태스크를 3중 라벨링(병렬가능·담당 레포·유저스토리)해 코딩 전에 FE/BE 분담을 설계</li>
+                        </ul>
+
+                        <h3>버전 관리되는 '헌법'</h3>
+                        <p>
+                            팀 규칙을 유의적 버전으로 관리되는 헌법 문서(원칙 6개)로 명문화했습니다. 실제로 계약 드리프트를
+                            겪은 뒤 회의에서 API 계약 정본을 명세 레포에서 백엔드가 생성하는 Swagger로 이관하기로 결정했고,
+                            이 변경이 헌법 개정과 함께 하위 문서 전체에 같은 커밋 흐름으로 전파되도록 운영했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AI Collaboration -->
+                <div id="kbap-ai" class="modal-section">
+                    <div class="en">
+                        <h3>AI as a full-time co-author, with limited authority</h3>
+                        <ul>
+                            <li>100% of frontend commits carry a <code>Co-Authored-By</code> trailer and a session URL, so every change is traceable back to the AI session, the Jira ticket, and the decision that motivated it</li>
+                            <li>6 recurring workflows (release engineering, issue-quality rules, knowledge handoff) were encoded as natural-language "skills" the AI executes, instead of shell scripts</li>
+                            <li>Long sessions hand off through a progress log and a resume protocol, so context loss across sessions doesn't silently drop work</li>
+                        </ul>
+                        <h3>Human-in-the-loop governance</h3>
+                        <p>
+                            Because a wrong risk judgment is a safety issue, the AI is only allowed to move a ticket to
+                            "In Review" — never to "Done." Final sign-off always requires a human reviewer and, for safety-critical
+                            logic, verification on a real device. This permission boundary is enforced at the tooling level, not just by convention.
+                        </p>
+                    </div>
+                    <div class="ko hidden">
+                        <h3>상근 공동저자이지만, 권한은 제한된 AI</h3>
+                        <ul>
+                            <li>프론트엔드 커밋 100%가 <code>Co-Authored-By</code> + 세션 URL을 포함해, 모든 변경을 AI 세션·Jira 티켓·결정 근거까지 역추적할 수 있습니다</li>
+                            <li>반복되는 절차(릴리스, 이슈 품질 규격, 지식 이관) 6개를 셸 스크립트 대신 AI가 실행하는 자연어 '스킬'로 인코딩했습니다</li>
+                            <li>긴 세션은 진행 로그와 재개 프로토콜로 인수인계해, 세션이 바뀌어도 맥락이 조용히 유실되지 않도록 했습니다</li>
+                        </ul>
+                        <h3>Human-in-the-loop 거버넌스</h3>
+                        <p>
+                            위험도 오판이 곧 안전 문제이기 때문에, AI는 이슈를 '검토 중'까지만 전환할 수 있고 '완료' 처리는
+                            할 수 없습니다. 최종 승인은 항상 사람 리뷰어가, 안전 크리티컬 로직은 실기기 검증까지 거친 뒤에만
+                            내립니다. 이 권한 경계는 관례가 아니라 도구(툴링) 레벨에서 강제했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Impact -->
+                <div id="kbap-impact" class="modal-section">
+                    <div class="en">
+                        <h3>Why this matters</h3>
+                        <p>
+                            K-Bap isn't a showcase of "AI wrote the code" — it's a showcase of the process I designed around AI:
+                            where the constitution, the approval gates, the permission boundaries, and the final sign-off criteria
+                            all live. AI accelerates the work; the governance around it is what keeps a 2-person team's safety-critical
+                            product trustworthy.
+                        </p>
+                        <ul>
+                            <li>Domain research across US/EU/Korean food-safety regulations to build an 81-item allergen & dietary model</li>
+                            <li>Snapshot-locked regression tests on real menu OCR data to prevent silent safety regressions</li>
+                            <li>A dual-tracking system (Jira as source of truth, a separate launch doc for the release big picture) to prevent status drift</li>
+                        </ul>
+                    </div>
+                    <div class="ko hidden">
+                        <h3>이 프로젝트의 의의</h3>
+                        <p>
+                            K-Bap은 "AI가 코드를 짰다"는 것을 보여주는 프로젝트가 아니라, AI를 둘러싼 프로세스를 제가 직접
+                            설계했다는 것을 보여주는 프로젝트입니다. 헌법·승인 게이트·권한 경계·완료 판정 기준 모두 그 설계의
+                            일부입니다. AI는 속도를 높이지만, 2인 팀의 안전 크리티컬 제품을 신뢰할 수 있게 만드는 건 그 주변의
+                            거버넌스입니다.
+                        </p>
+                        <ul>
+                            <li>미국/EU/한국 식품안전 규정을 리서치해 알레르겐·식이 분류 81종 도메인 모델 구축</li>
+                            <li>실제 메뉴판 OCR 데이터로 스냅샷 회귀 테스트를 잠가 안전 관련 회귀를 방지</li>
+                            <li>이원 트래킹(Jira=이슈 정본, 별도 문서=출시 큰그림)으로 상태 정보의 이중화·드리프트 방지</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- DuckOn Modal -->
     <div id="duckon-modal" class="modal-backdrop hidden" onclick="closeModal('duckon-modal')">
