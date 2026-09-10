@@ -7,1329 +7,418 @@
     <title>Yejin Kim | Backend & DevOps Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --bg: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #334155;
-            --text: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --accent: #3b82f6;
-            --accent-light: #60a5fa;
+            --bg: #faf9f6;
+            --surface: #ffffff;
+            --ink: #16181d;
+            --ink-soft: #5b5f6b;
+            --line: #e4e1d9;
+            --accent: #3454d1;
+            --accent-soft: #eef1fc;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
             background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            color: var(--ink);
+            line-height: 1.65;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 50;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-light);
+        h1, h2, h3, h4 {
             font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--ink);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
+        a { color: var(--accent); }
+
+        .hidden { display: none !important; }
+
+        /* Layout */
+        .layout {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem 6rem;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 4rem;
+            align-items: start;
         }
 
-        nav a {
-            color: var(--text);
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 3rem;
+        }
+
+        .sidebar .photo {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            margin-bottom: 1.25rem;
+        }
+
+        .sidebar .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .sidebar h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+
+        .sidebar .role { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 1.25rem; }
+
+        .sidebar nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+
+        .sidebar nav a {
+            color: var(--ink-soft);
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 0.92rem;
             font-weight: 500;
+            transition: color 0.2s;
         }
 
-        nav a:hover {
-            color: var(--accent-light);
-        }
+        .sidebar nav a:hover { color: var(--accent); }
+
+        .sidebar .actions { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 1.5rem; }
 
         .lang-toggle {
-            background: var(--bg-secondary);
-            border: 2px solid var(--accent);
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--ink);
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
+            font-size: 0.8rem;
         }
 
-        .lang-toggle:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
+        .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        .social-links { display: flex; gap: 0.6rem; }
+
+        .social-links a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 2rem 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            position: relative;
-            overflow: hidden;
+            color: var(--ink-soft);
+            transition: all 0.2s;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            animation: pulse 4s ease-in-out infinite;
+        .social-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+        .sidebar .facts { display: flex; flex-direction: column; gap: 0.85rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+
+        .sidebar .facts .fact { font-size: 0.82rem; color: var(--ink-soft); }
+
+        .sidebar .facts .fact strong { display: block; color: var(--ink); font-size: 0.85rem; margin-bottom: 0.1rem; }
+
+        /* Main content */
+        .main .lede {
+            font-size: 1.15rem;
+            color: var(--ink-soft);
+            max-width: 640px;
+            margin-bottom: 3rem;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .main .lede strong { color: var(--ink); }
+
+        .section { padding-block: 2.75rem; border-top: 1px solid var(--line); scroll-margin-top: 2rem; }
+
+        .section:first-of-type { border-top: none; padding-top: 0; }
+
+        .section h2 {
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.75rem;
         }
 
-        .hero-content {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            z-index: 1;
+        /* Case studies (projects) */
+        .case {
+            margin-bottom: 3.5rem;
         }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Space Grotesk', sans-serif;
+        .case:last-child { margin-bottom: 0; }
+
+        .case-head { margin-bottom: 1rem; }
+
+        .case h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+
+        .case .meta { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 0.75rem; }
+
+        .case .summary { color: var(--ink-soft); max-width: 680px; margin-bottom: 1rem; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+
+        .tag {
+            font-size: 0.76rem;
+            padding: 0.28rem 0.7rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--ink-soft);
+            background: var(--surface);
         }
 
-        .hero-text h2 {
-            font-size: 1.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-            text-align: left;
-            position: relative;
-            padding-bottom: 1rem;
-        }
+        .links-row { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.75rem; font-size: 0.88rem; }
 
-        .hero-text h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20px;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-        }
+        .links-row a { font-weight: 600; text-decoration: none; }
 
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+        .links-row a:hover { text-decoration: underline; }
+
+        .stats { display: flex; flex-wrap: wrap; gap: 2rem; margin: 1.5rem 0; padding: 1.25rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+        .stat .num { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+
+        .stat .label { font-size: 0.82rem; color: var(--ink-soft); max-width: 200px; }
+
+        .case h4 { font-size: 1rem; margin: 1.75rem 0 0.6rem; }
+
+        .case p { color: var(--ink-soft); margin-bottom: 0.75rem; max-width: 700px; }
+
+        .case ul { margin: 0 0 1rem 1.1rem; color: var(--ink-soft); }
+
+        .case li { margin-bottom: 0.4rem; max-width: 680px; }
+
+        .figure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 1rem 0; }
+
+        .figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+
+        .figure figcaption { margin-top: 0.5rem; font-size: 0.8rem; color: var(--ink-soft); }
+
+        /* Entry list (experience / activities / awards) */
+        .entry {
+            border-left: 2px solid var(--line);
+            padding-left: 1.25rem;
             margin-bottom: 2rem;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .entry:last-child { margin-bottom: 0; }
 
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
+        .entry-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            border: 2px solid var(--accent);
-        }
+        .entry-meta { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.6rem; }
 
-        .btn-primary:hover {
-            background: var(--accent-light);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-        }
+        .entry p { color: var(--ink-soft); margin-bottom: 0.6rem; max-width: 680px; }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--text-secondary);
-        }
+        .entry p:last-child { margin-bottom: 0; }
 
-        .btn-secondary:hover {
-            background: var(--bg-secondary);
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
 
-        .hero-image {
-            position: relative;
-        }
+        .skill-block h3 { font-size: 1rem; margin-bottom: 0.75rem; }
 
-        .profile-photo {
-            width: 100%;
-            max-width: 300px;
-            height: 300px;
-            border-radius: 161px;
-            border: 3px solid var(--accent);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
-            background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+        .skill-block ul { list-style: none; }
 
-        .profile-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-            border-color: var(--accent-light);
-        }
-
-        /* Hero Quick Facts Card */
-        .hero-facts {
-            margin-top: 1.5rem;
-            background: rgba(30, 41, 59, 0.55);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-facts .fact {
-            display: flex;
-            gap: 0.7rem;
-            align-items: flex-start;
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-        }
-
-        .hero-facts .fact .fact-icon {
-            flex-shrink: 0;
-        }
-
-        .hero-facts .fact strong {
-            color: var(--accent-light);
-            font-weight: 600;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            border-radius: 2px;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-            border-color: var(--accent);
-        }
-
-        .project-card h3 {
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .project-card .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .tech-tag {
-            background: var(--bg-card);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--accent-light);
-            border: 1px solid var(--accent);
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--accent);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .timeline-item:hover {
-            transform: translateX(10px);
-            border-color: var(--accent);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.5rem;
-            top: 2rem;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 3px solid var(--bg);
-        }
-
-        .timeline-item h3 {
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item .date {
-            color: var(--text-secondary);
+        .skill-block li {
             font-size: 0.9rem;
-            margin-bottom: 1rem;
+            color: var(--ink-soft);
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--line);
         }
 
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+        .skill-block li:last-child { border-bottom: none; }
 
-        .skill-category {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        .skill-block li strong { color: var(--ink); }
 
-        .skill-category:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
+        /* Education / certification grid */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
 
-        .skill-category h3 {
-            color: var(--accent-light);
-            margin-bottom: 1rem;
-        }
+        .edu-block h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); margin-bottom: 0.9rem; }
 
-        .skill-category ul {
-            list-style: none;
-        }
+        .edu-block .item { margin-bottom: 0.9rem; }
 
-        .skill-category li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 1.5rem;
-        }
+        .edu-block .item:last-child { margin-bottom: 0; }
 
-        .skill-category li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
+        .edu-block .item-title { font-weight: 600; font-size: 0.95rem; }
 
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+        .edu-block .item-date { font-size: 0.82rem; color: var(--ink-soft); }
 
-        .contact-card {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s;
-        }
+        /* Contact */
+        .contact-list { display: flex; flex-direction: column; gap: 0.9rem; max-width: 420px; }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
+        .contact-list .row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
 
-        .contact-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-light);
-        }
+        .contact-list .row span:first-child { color: var(--ink-soft); }
 
-        .contact-card a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-        }
+        .contact-list .row a, .contact-list .row span:last-child { font-weight: 600; text-decoration: none; color: var(--ink); }
 
-        .contact-card a:hover {
-            color: var(--accent-light);
-        }
+        .contact-list .row a:hover { color: var(--accent); }
 
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        /* Modal Styles */
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 60;
-            padding: 20px;
-        }
-
-        .modal-card {
-            max-width: 1000px;
-            width: 100%;
-            border-radius: 20px;
-            background: var(--bg);
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
-            max-height: 90vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 2rem;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--accent-light);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .modal-close {
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            background: rgba(15, 23, 42, 0.95);
-            color: #e5e7eb;
-            border-radius: 999px;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            background: var(--accent);
-            border-color: var(--accent-light);
-            transform: translateY(-1px);
-        }
-
-        /* Modal Tabs */
-        .modal-tabs {
-            display: flex;
-            gap: 0.5rem;
-            padding: 1rem 2rem 0;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            background: var(--bg-secondary);
-        }
-
-        .modal-tab {
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-weight: 500;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .modal-tab:hover {
-            color: var(--accent-light);
-        }
-
-        .modal-tab.active {
-            color: var(--accent-light);
-            border-bottom-color: var(--accent);
-        }
-
-        /* Modal Body */
-        .modal-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 2rem;
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .modal-section {
-            display: none;
-        }
-
-        .modal-section.active {
-            display: block;
-        }
-
-        .modal-body p {
-            margin-bottom: 1rem;
-        }
-
-        .modal-body ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal-body li {
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-body h3 {
-            color: var(--accent-light);
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* Detail Image */
-        .detail-image {
-            margin: 1.5rem 0;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .detail-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .detail-image figcaption {
-            padding: 0.75rem;
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .modal-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        /* Project Links */
-        .project-links {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            border-radius: 12px;
-        }
-
-        .project-links h3 {
-            color: var(--accent-light);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .project-links-grid {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .project-link-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .project-link-item a {
-            color: var(--accent-light);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-link-item a:hover {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-
-        .project-link-item a::before {
-            content: "→";
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .project-link-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-            min-width: 140px;
-        }
-
-        /* Result Grid for 성과 section */
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .result-item {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .result-item-title {
-            color: var(--accent-light);
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        .result-item-body {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .hidden {
-            display: none !important;
-        }
+        footer { text-align: center; font-size: 0.82rem; color: var(--ink-soft); padding: 2.5rem 2rem 3rem; }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text h2 {
-                font-size: 1.5rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .profile-photo {
-                max-width: 300px;
-                height: 300px;
-                margin: 0 auto;
-            }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .projects-grid,
-            .skills-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; padding: 2rem 1.25rem 4rem; gap: 2rem; }
+            .sidebar { position: static; display: flex; flex-direction: column; }
+            .sidebar nav ul { flex-direction: row; flex-wrap: wrap; gap: 1rem 1.25rem; }
+            .sidebar .facts { flex-direction: row; flex-wrap: wrap; gap: 1.25rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">Yejin Kim</div>
-            <ul>
-                <li><a href="#home" class="en">Home</a><a href="#home" class="ko hidden">홈</a></li>
-                <li><a href="#projects" class="en">Projects</a><a href="#projects" class="ko hidden">프로젝트</a></li>
-                <li><a href="#experience" class="en">Experience</a><a href="#experience" class="ko hidden">경력</a></li>
-                <li><a href="#activities" class="en">Activities</a><a href="#activities" class="ko hidden">대외활동</a></li>
-                <li><a href="#awards" class="en">Awards</a><a href="#awards" class="ko hidden">수상</a></li>
-                <li><a href="#skills" class="en">Skills</a><a href="#skills" class="ko hidden">기술</a></li>
-                <li><a href="#contact" class="en">Contact</a><a href="#contact" class="ko hidden">연락</a></li>
-                <li><button class="lang-toggle" onclick="toggleLanguage()">KR</button></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="top">
+            <div class="photo">
+                <img src="./assets/img/profile.jpeg" alt="Yejin Kim">
+            </div>
+            <h1 class="en">Yejin Kim</h1>
+            <h1 class="ko hidden">김예진</h1>
+            <div class="role en">Backend & DevOps Engineer</div>
+            <div class="role ko hidden">백엔드 & DevOps 엔지니어</div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="en">Yejin Kim</h1>
-                <h1 class="ko hidden">김예진</h1>
+            <nav>
+                <ul>
+                    <li><a href="#projects" class="en">Projects</a><a href="#projects" class="ko hidden">프로젝트</a></li>
+                    <li><a href="#experience" class="en">Experience</a><a href="#experience" class="ko hidden">경력</a></li>
+                    <li><a href="#activities" class="en">Activities</a><a href="#activities" class="ko hidden">대외활동</a></li>
+                    <li><a href="#awards" class="en">Awards</a><a href="#awards" class="ko hidden">수상</a></li>
+                    <li><a href="#education" class="en">Education</a><a href="#education" class="ko hidden">학력 & 자격</a></li>
+                    <li><a href="#skills" class="en">Skills</a><a href="#skills" class="ko hidden">기술 스택</a></li>
+                    <li><a href="#contact" class="en">Contact</a><a href="#contact" class="ko hidden">연락처</a></li>
+                </ul>
+            </nav>
 
-                <h2 class="en">Backend & DevOps Engineer</h2>
-                <h2 class="ko hidden">백엔드 & DevOps 엔지니어</h2>
-
-                <p class="en">
-                    I design and operate production-ready backend and DevOps systems, from AWS infrastructure and Docker,
-                    to CI/CD pipelines and real-time services like DuckOn.
-                </p>
-                <p class="ko hidden">
-                    DuckOn과 같은 실서비스를 기준으로, AWS 인프라·Docker·CI/CD 파이프라인부터
-                    실시간 서비스까지 직접 설계하고 운영하는 엔지니어입니다.
-                </p>
-
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary en">View My Work</a>
-                    <a href="#projects" class="btn btn-primary ko hidden">프로젝트 보기</a>
-                    <a href="#contact" class="btn btn-secondary en">Get In Touch</a>
-                    <a href="#contact" class="btn btn-secondary ko hidden">연락하기</a>
-                </div>
-
+            <div class="actions">
+                <button class="lang-toggle" onclick="toggleLanguage()">KR</button>
                 <div class="social-links">
                     <a href="https://github.com/rocher71" target="_blank" title="GitHub">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     </a>
                     <a href="https://www.linkedin.com/in/yejin-kim-7b4078274/" target="_blank" title="LinkedIn">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
                     <a href="mailto:qja086351@naver.com" title="Email">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                        </svg>
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
                     </a>
                 </div>
             </div>
 
-            <div class="hero-image">
-                <div class="profile-photo">
-                    <img src="./assets/img/profile.jpeg" alt="이미지">
-                    <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521218445-6616ed9d-07be-49a0-ad40-4b3b6f54e580.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002340Z&X-Amz-Expires=300&X-Amz-Signature=c7e990b321dd9534c036fc3983250f310fbd923cebb66ea83c1cc8dda2780182&X-Amz-SignedHeaders=host" alt="이미지"> -->
+            <div class="facts">
+                <div class="fact">
+                    <strong class="en">Inha University</strong>
+                    <strong class="ko hidden">인하대학교</strong>
+                    <span class="en">B.S. Computer Science · SSAFY Java Track</span>
+                    <span class="ko hidden">컴퓨터공학과 학사 · SSAFY 자바 전공</span>
                 </div>
+                <div class="fact">
+                    <strong class="en">Currently</strong>
+                    <strong class="ko hidden">현재</strong>
+                    <span class="en">Building K-Bap — AI SW Maestro, 2026</span>
+                    <span class="ko hidden">K-Bap 개발 중 — AI SW 마에스트로, 2026</span>
+                </div>
+                <div class="fact">
+                    <strong class="en">Languages</strong>
+                    <strong class="ko hidden">어학</strong>
+                    <span>OPIc AL · TOEIC 945</span>
+                </div>
+            </div>
+        </aside>
 
-                <div class="hero-facts">
-                    <div class="fact">
-                        <span class="fact-icon">🎓</span>
-                        <span class="en"><strong>Inha University</strong> — B.S. Computer Science<br>SSAFY Java Track (2025)</span>
-                        <span class="ko hidden"><strong>인하대학교</strong> 컴퓨터공학과 학사<br>SSAFY 자바 전공 트랙 수료 (2025)</span>
+        <!-- Main -->
+        <main class="main">
+            <p class="lede en">
+                I design and operate <strong>production-ready backend and DevOps systems</strong> — from AWS infrastructure
+                and CI/CD pipelines to the AI-driven development process behind K-Bap. This page has everything on one scroll,
+                no clicking required.
+            </p>
+            <p class="lede ko hidden">
+                AWS 인프라·CI/CD 파이프라인부터 K-Bap의 AI 기반 개발 프로세스까지, <strong>실서비스 기준의 백엔드·DevOps 시스템</strong>을
+                직접 설계하고 운영합니다. 이 페이지는 클릭 없이 스크롤만으로 모든 내용을 볼 수 있게 구성했습니다.
+            </p>
+
+            <!-- Projects -->
+            <section class="section" id="projects">
+                <h2 class="en">Featured Projects</h2>
+                <h2 class="ko hidden">주요 프로젝트</h2>
+
+                <!-- K-Bap -->
+                <article class="case">
+                    <div class="case-head">
+                        <h3>K-Bap</h3>
+                        <div class="meta en">Product Planning & Full-stack · 2-person team · Apr 2026 – Nov 2026 (AI SW Maestro Program)</div>
+                        <div class="meta ko hidden">기획 & 풀스택 · 2인 팀 · 2026년 4월 – 11월 (AI SW 마에스트로 과정)</div>
+                        <p class="summary en">
+                            A food safety app for foreigners living in or visiting Korea. Scan a menu, and the app judges each
+                            dish's risk against your allergies and dietary restrictions (halal, vegetarian, etc.) using LLM-based
+                            OCR and a personalized risk engine. MVP covers 9 languages and 81 tracked ingredients.
+                        </p>
+                        <p class="summary ko hidden">
+                            한국에 거주·방문하는 외국인을 위한 음식 안전 앱입니다. 메뉴판을 스캔하면 LLM 기반 OCR로 음식을 인식하고,
+                            사용자의 알레르기·식이 제한(할랄, 채식 등)에 따라 개인화된 위험도를 보여줍니다. MVP는 9개 언어, 회피 재료 81종을 지원합니다.
+                        </p>
                     </div>
-                    <div class="fact">
-                        <span class="fact-icon">🚀</span>
-                        <span class="en"><strong>Currently</strong> — Building K-Bap<br>AI SW Maestro Program, 2026</span>
-                        <span class="ko hidden"><strong>현재</strong> — K-Bap 개발 중<br>AI SW 마에스트로 과정, 2026</span>
+
+                    <div class="tags">
+                        <span class="tag">React Native · Expo</span>
+                        <span class="tag">Kotlin · Spring Boot</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">OpenAPI Contract-First</span>
+                        <span class="tag">LLM OCR</span>
+                        <span class="tag">Claude Code (AI pair)</span>
                     </div>
-                    <div class="fact">
-                        <span class="fact-icon">🌐</span>
-                        <span class="en">OPIc AL · TOEIC 945</span>
-                        <span class="ko hidden">OPIc AL · TOEIC 945</span>
+
+                    <div class="stats">
+                        <div class="stat"><div class="num">114 / 100%</div><div class="label en">FE commits co-authored with AI, all traceable to a session</div><div class="label ko hidden">FE 커밋 전부 AI 공동저작, 세션 URL로 역추적 가능</div></div>
+                        <div class="stat"><div class="num en">37 FR / 71 tasks</div><div class="num ko hidden">기능요구 37 / 태스크 71</div><div class="label en">Requirements decomposed into parallelizable, labeled tasks</div><div class="label ko hidden">병렬가능·담당·스토리로 3중 라벨링해 분해</div></div>
+                        <div class="stat"><div class="num">false-safe 0%</div><div class="label en">Safety-critical success criterion, enforced by tests + human review</div><div class="label ko hidden">테스트+사람 검증으로 강제한 안전 크리티컬 기준</div></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2><span class="en">Featured Projects</span><span class="ko hidden">주요 프로젝트</span></h2>
-
-        <div class="projects-grid">
-            <div class="project-card" onclick="openModal('kbap-modal')">
-                <h3>K-Bap</h3>
-                <p class="en">AI-Powered Food Safety App for Foreigners in Korea</p>
-                <p class="ko hidden">외국인을 위한 AI 음식 안전 앱</p>
-
-                <div class="tech-stack">
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Kotlin · Spring</span>
-                    <span class="tech-tag">MongoDB</span>
-                    <span class="tech-tag">Spec-Driven Dev</span>
-                    <span class="tech-tag">Claude AI</span>
-                </div>
-
-                <p class="en" style="margin-top: 1rem; color: var(--text-secondary);">
-                    Designed the spec-driven dev process & AI collaboration governance for a 2-person team. Click to see details →
-                </p>
-                <p class="ko hidden" style="margin-top: 1rem; color: var(--text-secondary);">
-                    2인 팀의 명세 주도 개발 프로세스와 AI 협업 거버넌스를 설계했습니다. 클릭하여 자세히 보기 →
-                </p>
-            </div>
-
-            <div class="project-card" onclick="openModal('duckon-modal')">
-                <h3>DuckOn</h3>
-                <p class="en">Live Streaming & Meme Community Platform</p>
-                <p class="ko hidden">실시간 스트리밍 & 밈 커뮤니티 플랫폼</p>
-
-                <div class="tech-stack">
-                    <span class="tech-tag">Spring Boot</span>
-                    <span class="tech-tag">AWS</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">GitLab CI/CD</span>
-                    <span class="tech-tag">MongoDB</span>
-                </div>
-
-                <p class="en" style="margin-top: 1rem; color: var(--text-secondary);">
-                    Led complete DevOps architecture. Click to see details →
-                </p>
-                <p class="ko hidden" style="margin-top: 1rem; color: var(--text-secondary);">
-                    전체 DevOps 아키텍처 주도. 클릭하여 자세히 보기 →
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2><span class="en">Experience</span><span class="ko hidden">경력</span></h2>
-
-        <div class="timeline">
-            <div class="timeline-item" onclick="openModal('xl8-modal')">
-                <h3>Software Engineering Intern</h3>
-                <div class="date en">XL8, San Jose, CA | Jul 2023 - Dec 2023</div>
-                <div class="date ko hidden">XL8, 미국 샌호세 | 2023년 7월 - 12월</div>
-                <p class="en">Contributed to React/Redux AI subtitle editing service. Click for details →</p>
-                <p class="ko hidden">React/Redux 기반 AI 자막 편집 서비스 개발. 자세히 보기 →</p>
-            </div>
-
-            <div class="timeline-item" onclick="openModal('wips-modal')">
-                <h3>Frontend Developer Intern</h3>
-                <div class="date en">WIPS, Seoul, Korea | Aug 2021 - Dec 2021</div>
-                <div class="date ko hidden">WIPS, 서울 | 2021년 8월 - 12월</div>
-                <p class="en">Contributed to Vue.js-based CRM system development. Click for details →</p>
-                <p class="ko hidden">Vue.js 기반 CRM 시스템 개발 참여. 자세히 보기 →</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Activities Section -->
-    <section id="activities">
-        <h2><span class="en">Activities</span><span class="ko hidden">대외활동</span></h2>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3 class="en">Developer, YAPP</h3>
-                <h3 class="ko hidden">YAPP 개발자</h3>
-                <div class="date en">Corporate-backed IT club | Nov 2022 - Feb 2023</div>
-                <div class="date ko hidden">기업형 연합 IT 동아리 | 2022년 11월 - 2023년 2월</div>
-                <p class="en">Built an Android WebView screen with React and Recoil.</p>
-                <p class="ko hidden">React, Recoil을 사용하여 안드로이드 네이티브 어플리케이션 내 웹뷰 화면 구현.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">Developer, CMC</h3>
-                <h3 class="ko hidden">CMC 개발자</h3>
-                <div class="date en">Central MakeUs, app-launch club | Apr 2022 - Jul 2022</div>
-                <div class="date ko hidden">수익형 앱 런칭 동아리 Central MakeUs | 2022년 4월 - 7월</div>
-                <p class="en">Shipped a hybrid app built with React Native and Redux Toolkit.</p>
-                <p class="ko hidden">React Native와 Redux Toolkit을 통해 개발한 하이브리드 어플리케이션 출시.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">Frontend Developer, WoozLabs (Monomail)</h3>
-                <h3 class="ko hidden">WoozLabs (Monomail) 프론트엔드 개발자</h3>
-                <div class="date en">Team side project | Jun 2024 - Dec 2024</div>
-                <div class="date ko hidden">개발 프로젝트 팀 | 2024년 6월 - 12월</div>
-                <p class="en">Built a React/Electron desktop app for Gemini-assisted email drafting — signature management plus AI-powered tone/summary editing.</p>
-                <p class="ko hidden">Gemini를 활용한 이메일 관리·작성 데스크탑 앱(React, Electron) 개발. 서명 관리 및 AI 기반 작성 내용 검정·요약·톤 변경 기능 구현.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards Section -->
-    <section id="awards">
-        <h2><span class="en">Awards & Honors</span><span class="ko hidden">수상 경력</span></h2>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3 class="en">Samsung SW AI Academy Special Project – 2nd Place</h3>
-                <h3 class="ko hidden">삼성 청년 SW 아카데미 특화 프로젝트 – 우수상 2위</h3>
-                <div class="date en">Seoul, Korea | Oct 2025</div>
-                <div class="date ko hidden">서울 | 2025년 10월</div>
-                <p class="en">Developed banking application for foreign residents in Korea.</p>
-                <p class="ko hidden">국내 거주 외국인 전용 오픈 뱅킹 서비스 개발.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">Samsung SW AI Academy Joint Project – 1st Place</h3>
-                <h3 class="ko hidden">삼성 청년 SW 아카데미 공통 프로젝트 – 우수상 1위</h3>
-                <div class="date en">Seoul, Korea | Aug 2025</div>
-                <div class="date ko hidden">서울 | 2025년 8월</div>
-                <p class="en">Built real-time video viewing & chat service, reached 1,000 MAU.</p>
-                <p class="ko hidden">실시간 영상 동시 시청 및 채팅 서비스 개발, MAU 1,000명 달성.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">Inha University Capstone Design Fair – 2nd Place</h3>
-                <h3 class="ko hidden">인하대학교 캡스톤디자인 성과발표회 – 2위 소프트웨어융합대학장상</h3>
-                <div class="date en">Incheon, Korea | Dec 2024</div>
-                <div class="date ko hidden">인천 | 2024년 12월</div>
-                <p class="en">Developed a mutual text/voice translation application.</p>
-                <p class="ko hidden">점자 번역 하이브리드 애플리케이션 개발.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">Silicon Valley Koreans Hackathon – 2nd Place</h3>
-                <h3 class="ko hidden">실리콘밸리 한인 해커톤 – 2위</h3>
-                <div class="date en">San Francisco, CA | Nov 2023</div>
-                <div class="date ko hidden">샌프란시스코 | 2023년 11월</div>
-                <p class="en">Built region-based community service "Know Your Neighbors".</p>
-                <p class="ko hidden">지도 기반 리뷰 및 치안 정보 공유 서비스 "Know Your Neighbors" 개발.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">IGRUS IT Competition – 1st Place</h3>
-                <h3 class="ko hidden">IGRUS IT 경진대회 – 1위</h3>
-                <div class="date en">Incheon, Korea | Oct 2020</div>
-                <div class="date ko hidden">인천 | 2020년 10월</div>
-                <p class="en">Built a Unity-based 3D game introducing the CS department to incoming freshmen.</p>
-                <p class="ko hidden">컴퓨터공학과 신입생들을 위한 Unity 기반 학교 소개 3D 게임 구현.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3 class="en">Inha University Ideathon Competition – 2nd Place</h3>
-                <h3 class="ko hidden">인하대학교 아이디어톤 경진대회 – 2위 컴퓨터공학과장상</h3>
-                <div class="date en">Incheon, Korea | Mar 2020</div>
-                <div class="date ko hidden">인천 | 2020년 3월</div>
-                <p class="en">Proposed AR/VR character restoration idea using photos and videos.</p>
-                <p class="ko hidden">사진 및 영상 기반 AR/VR 인물 복원 아이디어 제안.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications & Education Section -->
-    <section id="certifications">
-        <h2><span class="en">Certifications & Education</span><span class="ko hidden">자격증 & 학력</span></h2>
-
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3 class="en">Certifications</h3>
-                <h3 class="ko hidden">자격증</h3>
-                <ul>
-                    <li class="en">AWS Solutions Architect – Associate (Sep 2025)</li>
-                    <li class="ko hidden">AWS Solutions Architect – Associate (2025년 9월)</li>
-                    <li class="en">SQLD – SQL Developer (Sep 2024)</li>
-                    <li class="ko hidden">SQLD – SQL 개발자 (2024년 9월)</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3 class="en">Language Proficiency</h3>
-                <h3 class="ko hidden">어학 능력</h3>
-                <ul>
-                    <li class="en">OPIc – AL (Advanced Low) (Feb 2025)</li>
-                    <li class="ko hidden">OPIc – AL (Advanced Low) (2025년 2월)</li>
-                    <li class="en">TOEIC – 945/990 (Sep 2024)</li>
-                    <li class="ko hidden">TOEIC – 945/990 (2024년 9월)</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3 class="en">Education</h3>
-                <h3 class="ko hidden">학력</h3>
-                <ul>
-                    <li class="en">SSAFY – Java Track (Jan 2025 - Dec 2025)</li>
-                    <li class="ko hidden">삼성 청년 SW AI 아카데미 – JAVA 전공 (2025년 1월 - 12월)</li>
-                    <li class="en">Inha University – B.S. Computer Science (2019 - 2025)</li>
-                    <li class="ko hidden">인하대학교 – 컴퓨터공학과 학사 (2019 - 2025)</li>
-                    <li class="en">Taylor University – Exchange Student (Jan - Jun 2023)</li>
-                    <li class="ko hidden">Taylor University – 교환학생 (2023년 1월 - 6월)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2><span class="en">Technical Skills</span><span class="ko hidden">기술 스택</span></h2>
-
-        <div class="skills-grid">
-            <div class="skill-category" onclick="openModal('backend-modal')">
-                <h3 class="en">Backend & APIs</h3>
-                <h3 class="ko hidden">백엔드 & API</h3>
-                <ul>
-                    <li>Java</li>
-                    <li>Spring Boot</li>
-                    <li>JPA</li>
-                    <li>REST API Design</li>
-                </ul>
-                <p style="margin-top: 1rem; color: var(--accent); font-size: 0.9rem;">Click for details →</p>
-            </div>
-
-            <div class="skill-category" onclick="openModal('infra-modal')">
-                <h3 class="en">Cloud & DevOps</h3>
-                <h3 class="ko hidden">클라우드 & DevOps</h3>
-                <ul>
-                    <li>AWS (EC2, S3, CloudFront)</li>
-                    <li>Docker</li>
-                    <li>GitLab CI/CD</li>
-                    <li>NGINX</li>
-                </ul>
-                <p style="margin-top: 1rem; color: var(--accent); font-size: 0.9rem;">Click for details →</p>
-            </div>
-
-            <div class="skill-category" onclick="openModal('database-modal')">
-                <h3 class="en">Databases</h3>
-                <h3 class="ko hidden">데이터베이스</h3>
-                <ul>
-                    <li>MySQL</li>
-                    <li>MongoDB</li>
-                    <li>Redis</li>
-                </ul>
-                <p style="margin-top: 1rem; color: var(--accent); font-size: 0.9rem;">Click for details →</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2><span class="en">Get In Touch</span><span class="ko hidden">연락하기</span></h2>
-
-        <div class="contact-grid">
-            <div class="contact-card">
-                <div class="icon">📧</div>
-                <h3>Email</h3>
-                <a href="mailto:qja086351@naver.com">qja086351@naver.com</a>
-            </div>
-
-            <div class="contact-card">
-                <div class="icon">📱</div>
-                <h3 class="en">Phone</h3>
-                <h3 class="ko hidden">전화</h3>
-                <p>(+82) 10-8399-7482</p>
-            </div>
-
-            <div class="contact-card">
-                <div class="icon">💼</div>
-                <h3>LinkedIn</h3>
-                <a href="https://www.linkedin.com/in/yejin-kim-7b4078274/" target="_blank">linkedin.com/in/yejin-kim</a>
-            </div>
-
-            <div class="contact-card">
-                <div class="icon">💻</div>
-                <h3>GitHub</h3>
-                <a href="https://github.com/rocher71" target="_blank">github.com/rocher71</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p class="en">&copy; 2025 Yejin Kim. Built with passion and code.</p>
-        <p class="ko hidden">&copy; 2025 김예진. 열정과 코드로 만들었습니다.</p>
-    </footer>
-
-    <!-- K-Bap Modal -->
-    <div id="kbap-modal" class="modal-backdrop hidden" onclick="closeModal('kbap-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">K-Bap – AI Food Safety App</span>
-                    <span class="ko hidden">K-Bap – AI 음식 안전 앱</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('kbap-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
-
-            <!-- Tabs -->
-            <div class="modal-tabs">
-                <button class="modal-tab active en" onclick="switchTab('kbap', 'overview')">Overview</button>
-                <button class="modal-tab active ko hidden" onclick="switchTab('kbap', 'overview')">프로젝트 개요</button>
-
-                <button class="modal-tab en" onclick="switchTab('kbap', 'methodology')">Methodology</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('kbap', 'methodology')">개발 방법론</button>
-
-                <button class="modal-tab en" onclick="switchTab('kbap', 'ai')">AI Collaboration</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('kbap', 'ai')">AI 협업</button>
-
-                <button class="modal-tab en" onclick="switchTab('kbap', 'impact')">Impact</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('kbap', 'impact')">성과 & 의의</button>
-            </div>
-
-            <!-- Body -->
-            <div class="modal-body">
-                <!-- Overview -->
-                <div id="kbap-overview" class="modal-section active">
+                    <h4 class="en">Spec-driven development</h4>
+                    <h4 class="ko hidden">명세 주도 개발</h4>
                     <div class="en">
                         <p>
-                            <strong>K-Bap</strong> is a food safety app for foreigners living in or visiting Korea. Users scan a menu,
-                            and the app judges the risk of each dish against their allergies and dietary restrictions (halal, vegetarian, etc.)
-                            using LLM-based OCR and a personalized risk engine.
-                        </p>
-                        <p><strong>Role:</strong> Product Planning & Full-stack (2-person team)</p>
-                        <p><strong>Period:</strong> Apr 2026 – Nov 2026 (AI SW Maestro Program)</p>
-                        <p><strong>Scope:</strong> MVP in 9 languages, 81 tracked ingredients</p>
-                    </div>
-                    <div class="ko hidden">
-                        <p>
-                            <strong>K-Bap</strong>은 한국에 거주하거나 방문하는 외국인을 위한 음식 안전 앱입니다. 메뉴판을 스캔하면
-                            LLM 기반 OCR로 음식을 인식하고, 사용자의 알레르기·식이 제한(할랄, 채식 등)에 따라 각 음식의 위험도를
-                            개인화해 보여줍니다.
-                        </p>
-                        <p><strong>역할:</strong> 기획 & 풀스택 (2인 팀)</p>
-                        <p><strong>기간:</strong> 2026년 4월 – 11월 (AI SW 마에스트로 과정)</p>
-                        <p><strong>범위:</strong> MVP 9개 언어, 회피 재료 81종</p>
-                    </div>
-
-                    <div class="modal-tech">
-                        <span class="tech-tag">React Native · Expo</span>
-                        <span class="tech-tag">Kotlin · Spring Boot</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">OpenAPI Contract-First</span>
-                        <span class="tech-tag">LLM OCR</span>
-                        <span class="tech-tag">Claude Code (AI pair)</span>
-                    </div>
-
-                    <div class="result-grid">
-                        <div class="result-item">
-                            <div class="result-item-title">114 / 100%</div>
-                            <div class="result-item-body en">Frontend commits co-authored with AI, all traceable to a session</div>
-                            <div class="result-item-body ko hidden">FE 커밋 전부 AI 공동저작 + 세션 URL로 역추적 가능</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-item-title en">37 FR / 71 Tasks</div>
-                            <div class="result-item-title ko hidden">기능요구 37개 / 태스크 71개</div>
-                            <div class="result-item-body en">Requirements decomposed into parallelizable, labeled tasks</div>
-                            <div class="result-item-body ko hidden">병렬 가능 여부·담당·스토리로 3중 라벨링해 분해</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-item-title en">false-safe 0%</div>
-                            <div class="result-item-title ko hidden">false-safe 0%</div>
-                            <div class="result-item-body en">Safety-critical success criterion, enforced by tests + human review</div>
-                            <div class="result-item-body ko hidden">테스트+사람 검증으로 강제한 안전 크리티컬 성공 기준</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Methodology -->
-                <div id="kbap-methodology" class="modal-section">
-                    <div class="en">
-                        <h3>Spec-Driven Development</h3>
-                        <p>
-                            A dedicated spec repo acts as the single source of truth. Every feature goes through
+                            A dedicated spec repo is the single source of truth. Every feature goes through
                             <strong>specify → clarify → plan → tasks → implement</strong>, with a human approval gate between
                             each stage — AI cannot advance the pipeline on its own.
                         </p>
                         <ul>
                             <li>Requirements clarified through 3 structured Q&A sessions (7 decisions recorded in the spec itself)</li>
                             <li>A 16-item spec-quality checklist gates entry into the planning stage</li>
-                            <li>Tasks are triple-labeled (parallelizable? / repo / user story) so FE/BE split is designed before coding starts</li>
+                            <li>Tasks are triple-labeled (parallelizable? / repo / user story) so the FE/BE split is designed before coding starts</li>
                         </ul>
-
-                        <h3>Living "Constitution"</h3>
                         <p>
-                            The team's ground rules are written as a version-controlled constitution (6 principles, semantically versioned).
-                            When a meeting decision changes a rule — e.g. moving the API contract's source of truth from the spec repo to
-                            backend-generated Swagger after we hit a real contract drift — the constitution is bumped, and the change
+                            The team's ground rules live in a version-controlled "constitution" (6 principles, semantically versioned).
+                            When a meeting decision changes a rule — e.g. moving the API contract's source of truth from the spec repo
+                            to backend-generated Swagger after a real contract drift — the constitution is bumped and the change
                             propagates to every downstream doc in the same commit trail.
                         </p>
                     </div>
                     <div class="ko hidden">
-                        <h3>명세 주도 개발 (Spec-Driven Development)</h3>
                         <p>
-                            별도의 명세 레포를 단일 진실(SSOT)로 두고, 모든 기능이
-                            <strong>specify → clarify → plan → tasks → implement</strong> 파이프라인을 거칩니다.
-                            각 단계 사이에 사람 승인 게이트가 있어 AI가 임의로 다음 단계로 넘어갈 수 없습니다.
+                            별도의 명세 레포를 단일 진실(SSOT)로 두고, 모든 기능이 <strong>specify → clarify → plan → tasks → implement</strong>
+                            파이프라인을 거칩니다. 각 단계 사이에 사람 승인 게이트가 있어 AI가 임의로 다음 단계로 넘어갈 수 없습니다.
                         </p>
                         <ul>
                             <li>구조화된 Q&A 세션 3회로 요구사항을 확정 (결정 7건을 명세에 직접 기록)</li>
                             <li>16개 항목의 명세 품질 체크리스트를 통과해야 계획 단계 진입</li>
                             <li>태스크를 3중 라벨링(병렬가능·담당 레포·유저스토리)해 코딩 전에 FE/BE 분담을 설계</li>
                         </ul>
-
-                        <h3>버전 관리되는 '헌법'</h3>
                         <p>
-                            팀 규칙을 유의적 버전으로 관리되는 헌법 문서(원칙 6개)로 명문화했습니다. 실제로 계약 드리프트를
-                            겪은 뒤 회의에서 API 계약 정본을 명세 레포에서 백엔드가 생성하는 Swagger로 이관하기로 결정했고,
-                            이 변경이 헌법 개정과 함께 하위 문서 전체에 같은 커밋 흐름으로 전파되도록 운영했습니다.
+                            팀 규칙을 유의적 버전으로 관리되는 '헌법' 문서(원칙 6개)로 명문화했습니다. 실제로 계약 드리프트를 겪은 뒤
+                            회의에서 API 계약 정본을 명세 레포에서 백엔드가 생성하는 Swagger로 이관하기로 결정했고, 이 변경이 헌법 개정과
+                            함께 하위 문서 전체에 같은 커밋 흐름으로 전파되도록 운영했습니다.
                         </p>
                     </div>
-                </div>
 
-                <!-- AI Collaboration -->
-                <div id="kbap-ai" class="modal-section">
+                    <h4 class="en">AI collaboration governance</h4>
+                    <h4 class="ko hidden">AI 협업 거버넌스</h4>
                     <div class="en">
-                        <h3>AI as a full-time co-author, with limited authority</h3>
                         <ul>
-                            <li>100% of frontend commits carry a <code>Co-Authored-By</code> trailer and a session URL, so every change is traceable back to the AI session, the Jira ticket, and the decision that motivated it</li>
+                            <li>100% of frontend commits carry a <strong>Co-Authored-By</strong> trailer and a session URL — every change traces back to the AI session, the Jira ticket, and the decision behind it</li>
                             <li>6 recurring workflows (release engineering, issue-quality rules, knowledge handoff) were encoded as natural-language "skills" the AI executes, instead of shell scripts</li>
                             <li>Long sessions hand off through a progress log and a resume protocol, so context loss across sessions doesn't silently drop work</li>
                         </ul>
-                        <h3>Human-in-the-loop governance</h3>
                         <p>
                             Because a wrong risk judgment is a safety issue, the AI is only allowed to move a ticket to
                             "In Review" — never to "Done." Final sign-off always requires a human reviewer and, for safety-critical
@@ -1337,29 +426,25 @@
                         </p>
                     </div>
                     <div class="ko hidden">
-                        <h3>상근 공동저자이지만, 권한은 제한된 AI</h3>
                         <ul>
-                            <li>프론트엔드 커밋 100%가 <code>Co-Authored-By</code> + 세션 URL을 포함해, 모든 변경을 AI 세션·Jira 티켓·결정 근거까지 역추적할 수 있습니다</li>
-                            <li>반복되는 절차(릴리스, 이슈 품질 규격, 지식 이관) 6개를 셸 스크립트 대신 AI가 실행하는 자연어 '스킬'로 인코딩했습니다</li>
-                            <li>긴 세션은 진행 로그와 재개 프로토콜로 인수인계해, 세션이 바뀌어도 맥락이 조용히 유실되지 않도록 했습니다</li>
+                            <li>프론트엔드 커밋 100%가 <strong>Co-Authored-By</strong> + 세션 URL을 포함해, 모든 변경을 AI 세션·Jira 티켓·결정 근거까지 역추적 가능</li>
+                            <li>반복되는 절차(릴리스, 이슈 품질 규격, 지식 이관) 6개를 셸 스크립트 대신 AI가 실행하는 자연어 '스킬'로 인코딩</li>
+                            <li>긴 세션은 진행 로그와 재개 프로토콜로 인수인계해, 세션이 바뀌어도 맥락이 조용히 유실되지 않도록 함</li>
                         </ul>
-                        <h3>Human-in-the-loop 거버넌스</h3>
                         <p>
-                            위험도 오판이 곧 안전 문제이기 때문에, AI는 이슈를 '검토 중'까지만 전환할 수 있고 '완료' 처리는
-                            할 수 없습니다. 최종 승인은 항상 사람 리뷰어가, 안전 크리티컬 로직은 실기기 검증까지 거친 뒤에만
-                            내립니다. 이 권한 경계는 관례가 아니라 도구(툴링) 레벨에서 강제했습니다.
+                            위험도 오판이 곧 안전 문제이기 때문에, AI는 이슈를 '검토 중'까지만 전환할 수 있고 '완료' 처리는 할 수
+                            없습니다. 최종 승인은 항상 사람 리뷰어가, 안전 크리티컬 로직은 실기기 검증까지 거친 뒤에만 내립니다.
+                            이 권한 경계는 관례가 아니라 도구 레벨에서 강제했습니다.
                         </p>
                     </div>
-                </div>
 
-                <!-- Impact -->
-                <div id="kbap-impact" class="modal-section">
+                    <h4 class="en">Why this matters</h4>
+                    <h4 class="ko hidden">성과 & 의의</h4>
                     <div class="en">
-                        <h3>Why this matters</h3>
                         <p>
                             K-Bap isn't a showcase of "AI wrote the code" — it's a showcase of the process I designed around AI:
-                            where the constitution, the approval gates, the permission boundaries, and the final sign-off criteria
-                            all live. AI accelerates the work; the governance around it is what keeps a 2-person team's safety-critical
+                            the constitution, the approval gates, the permission boundaries, and the sign-off criteria. AI
+                            accelerates the work; the governance around it is what keeps a 2-person team's safety-critical
                             product trustworthy.
                         </p>
                         <ul>
@@ -1369,594 +454,393 @@
                         </ul>
                     </div>
                     <div class="ko hidden">
-                        <h3>이 프로젝트의 의의</h3>
                         <p>
-                            K-Bap은 "AI가 코드를 짰다"는 것을 보여주는 프로젝트가 아니라, AI를 둘러싼 프로세스를 제가 직접
-                            설계했다는 것을 보여주는 프로젝트입니다. 헌법·승인 게이트·권한 경계·완료 판정 기준 모두 그 설계의
-                            일부입니다. AI는 속도를 높이지만, 2인 팀의 안전 크리티컬 제품을 신뢰할 수 있게 만드는 건 그 주변의
-                            거버넌스입니다.
+                            K-Bap은 "AI가 코드를 짰다"는 것을 보여주는 프로젝트가 아니라, AI를 둘러싼 프로세스를 제가 직접 설계했다는
+                            것을 보여주는 프로젝트입니다. 헌법·승인 게이트·권한 경계·완료 판정 기준 모두 그 설계의 일부입니다. AI는
+                            속도를 높이지만, 2인 팀의 안전 크리티컬 제품을 신뢰할 수 있게 만드는 건 그 주변의 거버넌스입니다.
                         </p>
                         <ul>
                             <li>미국/EU/한국 식품안전 규정을 리서치해 알레르겐·식이 분류 81종 도메인 모델 구축</li>
-                            <li>실제 메뉴판 OCR 데이터로 스냅샷 회귀 테스트를 잠가 안전 관련 회귀를 방지</li>
+                            <li>실제 메뉴판 OCR 데이터로 스냅샷 회귀 테스트를 잠가 안전 관련 회귀 방지</li>
                             <li>이원 트래킹(Jira=이슈 정본, 별도 문서=출시 큰그림)으로 상태 정보의 이중화·드리프트 방지</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </article>
 
-    <!-- DuckOn Modal -->
-    <div id="duckon-modal" class="modal-backdrop hidden" onclick="closeModal('duckon-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">DuckOn – Live Streaming & Meme Platform</span>
-                    <span class="ko hidden">DuckOn – 실시간 스트리밍 & 밈 플랫폼</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('duckon-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
+                <!-- DuckOn -->
+                <article class="case">
+                    <div class="case-head">
+                        <h3>DuckOn</h3>
+                        <div class="meta en">DevOps Lead & Backend · 5-person team (2 FE, 3 BE) · Jun 2025 – Aug 2025</div>
+                        <div class="meta ko hidden">DevOps 리드 & 백엔드 · 5인 팀 (프론트 2, 백엔드 3) · 2025년 6월 – 8월</div>
+                        <p class="summary en">
+                            A live streaming & meme community platform for global K-pop fans. I led the complete DevOps
+                            architecture and backend development, building production infrastructure that serves ~1,000 MAU
+                            with real-time streaming, AI-powered translation, and multi-database systems.
+                        </p>
+                        <p class="summary ko hidden">
+                            글로벌 K-POP 팬들을 위한 실시간 스트리밍 & 밈 커뮤니티 플랫폼입니다. 전체 DevOps 아키텍처 및 백엔드
+                            개발을 주도하며, 약 1,000 MAU를 서빙하는 실시간 스트리밍, AI 기반 번역, 멀티 데이터베이스 시스템을 구축했습니다.
+                        </p>
+                    </div>
 
-            <!-- Tabs -->
-            <div class="modal-tabs">
-                <button class="modal-tab active en" onclick="switchTab('duckon', 'overview')">Overview</button>
-                <button class="modal-tab active ko hidden" onclick="switchTab('duckon', 'overview')">프로젝트 개요</button>
+                    <div class="tags">
+                        <span class="tag">Java · Spring Boot</span>
+                        <span class="tag">MySQL · MongoDB · Redis</span>
+                        <span class="tag">Docker · GitLab CI/CD</span>
+                        <span class="tag">NGINX Reverse Proxy</span>
+                        <span class="tag">AWS EC2 · S3 · CloudFront</span>
+                        <span class="tag">OpenAI GPT API</span>
+                    </div>
 
-                <button class="modal-tab en" onclick="switchTab('duckon', 'contribution')">Key Contributions</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('duckon', 'contribution')">주요 기여</button>
+                    <div class="links-row">
+                        <a href="https://duckon.site" target="_blank" rel="noopener noreferrer">duckon.site ↗</a>
+                        <a href="https://memeduck.site" target="_blank" rel="noopener noreferrer">memeduck.site ↗</a>
+                        <a href="https://github.com/DuckOn-A404" target="_blank" rel="noopener noreferrer">github.com/DuckOn-A404 ↗</a>
+                    </div>
 
-                <button class="modal-tab en" onclick="switchTab('duckon', 'architecture')">Architecture</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('duckon', 'architecture')">아키텍처</button>
+                    <div class="stats">
+                        <div class="stat"><div class="num en">~90% faster</div><div class="num ko hidden">~90% 개선</div><div class="label en">TTFB 5100ms → 350ms, LCP 330ms → 100ms via CloudFront CDN</div><div class="label ko hidden">CloudFront CDN 도입으로 TTFB 5100ms→350ms, LCP 330ms→100ms</div></div>
+                        <div class="stat"><div class="num">~1,000 MAU</div><div class="label en">Real-time streaming & chat, stable uptime</div><div class="label ko hidden">실시간 스트리밍·채팅, 안정적 가동률</div></div>
+                        <div class="stat"><div class="num en">Zero downtime</div><div class="num ko hidden">무중단 배포</div><div class="label en">GitLab CI/CD + Docker + NGINX rolling deploys</div><div class="label ko hidden">GitLab CI/CD + Docker + NGINX 롤링 배포</div></div>
+                    </div>
 
-                <button class="modal-tab en" onclick="switchTab('duckon', 'results')">Results</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('duckon', 'results')">성과</button>
+                    <h4 class="en">Key contributions</h4>
+                    <h4 class="ko hidden">주요 기여</h4>
+                    <div class="en">
+                        <ul>
+                            <li>Designed and operated AWS infrastructure (EC2, S3, CloudFront, Route 53) with separate prod/dev environments and environment-specific CI/CD pipelines</li>
+                            <li>Migrated static assets to S3 + CloudFront, configured OAC for security, and added cache-invalidation scripts to the CI pipeline</li>
+                            <li>Implemented real-time in-room chat translation with the OpenAI GPT API for multilingual fan communication</li>
+                            <li>Built real-time monitoring with CloudWatch, Lambda, SNS, EventBridge — automated error alerts and daily infra reports (CPU, memory, disk, container status) via Mattermost</li>
+                            <li>Resolved GitLab Runner disk exhaustion by redesigning build pipelines and reusing Docker layers; optimized queries and added Redis caching for hot data</li>
+                        </ul>
+                    </div>
+                    <div class="ko hidden">
+                        <ul>
+                            <li>AWS 인프라(EC2, S3, CloudFront, Route 53) 설계 및 운영, 운영/개발 환경 분리 및 환경별 CI/CD 파이프라인 구성</li>
+                            <li>정적 리소스를 S3 + CloudFront로 마이그레이션, OAC 설정으로 보안 강화, CI 파이프라인에 캐시 무효화 스크립트 추가</li>
+                            <li>OpenAI GPT API로 실시간 채팅 번역 구현, 전 세계 팬들의 다국어 소통 지원</li>
+                            <li>CloudWatch, Lambda, SNS, EventBridge 기반 실시간 모니터링 — 에러 자동 알림 및 일일 인프라 상태 리포트(CPU, 메모리, 디스크, 컨테이너) Mattermost 발송</li>
+                            <li>GitLab Runner 디스크 용량 부족 문제를 빌드 파이프라인 재설계로 해결, 쿼리 최적화 및 Redis 캐싱 구성</li>
+                        </ul>
+                    </div>
 
-                <button class="modal-tab en" onclick="switchTab('duckon', 'features')">Features</button>
-                <button class="modal-tab ko hidden" onclick="switchTab('duckon', 'features')">주요 기능</button>
-            </div>
+                    <div class="figure-grid">
+                        <figure class="figure">
+                            <img src="./assets/img/duckon-arch-evolution.png" alt="DuckOn architecture evolution">
+                            <figcaption class="en">Migration from monolithic to a multi-cloud distributed system</figcaption>
+                            <figcaption class="ko hidden">모놀리식 구조에서 멀티 클라우드 분산 시스템으로 마이그레이션</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="./assets/img/duckon-infrastructure.png" alt="DuckOn infrastructure diagram">
+                            <figcaption class="en">Full AWS infrastructure — separate prod/dev, CDN, monitoring</figcaption>
+                            <figcaption class="ko hidden">운영/개발 분리, CDN, 모니터링을 포함한 전체 AWS 인프라</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="./assets/img/duckon-performance.png" alt="CloudFront performance metrics">
+                            <figcaption class="en">TTFB / LCP before-after CloudFront migration</figcaption>
+                            <figcaption class="ko hidden">CloudFront 마이그레이션 전후 TTFB/LCP 지표</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="./assets/img/duckon-monitoring.png" alt="Monitoring dashboard">
+                            <figcaption class="en">Real-time alerts & daily infra reports via Mattermost</figcaption>
+                            <figcaption class="ko hidden">Mattermost 실시간 알림 및 일일 인프라 리포트</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="./assets/img/duckon-translation.png" alt="AI translation chat">
+                            <figcaption class="en">OpenAI GPT-powered real-time translation chat</figcaption>
+                            <figcaption class="ko hidden">OpenAI GPT 기반 실시간 번역 채팅</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="./assets/img/memeduck-platform.png" alt="MemeDuck platform">
+                            <figcaption class="en">MemeDuck — meme upload, search, browsing</figcaption>
+                            <figcaption class="ko hidden">MemeDuck — 밈 업로드, 검색, 탐색</figcaption>
+                        </figure>
+                    </div>
+                </article>
+            </section>
 
-            <!-- Body -->
-            <div class="modal-body">
-                <!-- Overview Section -->
-                <div id="duckon-overview" class="modal-section active">
+            <!-- Experience -->
+            <section class="section" id="experience">
+                <h2 class="en">Experience</h2>
+                <h2 class="ko hidden">경력</h2>
+
+                <div class="entry">
+                    <div class="entry-title">XL8 — <span class="en">Software Engineering Intern</span><span class="ko hidden">소프트웨어 엔지니어 인턴</span></div>
+                    <div class="entry-meta en">San Jose, California | Jul 2023 - Dec 2023</div>
+                    <div class="entry-meta ko hidden">미국 샌호세 | 2023년 7월 - 12월</div>
                     <div class="en">
                         <p>
-                            <strong>DuckOn</strong> is a live streaming and meme community platform designed for global K-pop fans.
-                            I led the complete DevOps architecture and backend development, building production-ready infrastructure
-                            that serves ~1,000 MAU with real-time streaming, AI-powered translation, and multi-database systems.
+                            Joined a Silicon Valley team building an AI-powered subtitle editing platform used by real customers.
+                            Contributed to a React/Redux-based web editor and helped maintain a Draft.js subtitle editor.
                         </p>
-                        <p><strong>Role:</strong> DevOps Lead & Backend</p>
-                        <p><strong>Period:</strong> June 2025 – Present</p>
-                        <p><strong>Team:</strong> 5 members (2 Frontend, 3 Backend)</p>
+                        <p>
+                            Implemented UI/UX improvements for editing flows, fixed edge cases in subtitle alignment and timeline
+                            syncing, and collaborated with backend engineers to adjust APIs — learning how production-scale React
+                            apps are structured and how teams balance customer feedback against technical constraints.
+                        </p>
                     </div>
                     <div class="ko hidden">
                         <p>
-                            <strong>DuckOn</strong>은 글로벌 K-POP 팬들을 위한 실시간 스트리밍 & 밈 커뮤니티 플랫폼입니다.
-                            전체 DevOps 아키텍처 및 백엔드 개발을 주도하며, 약 1,000 MAU를 서빙하는 실시간 스트리밍,
-                            AI 기반 번역, 멀티 데이터베이스 시스템을 구축했습니다.
+                            실제 고객이 사용하는 AI 자막 편집 플랫폼을 만드는 실리콘밸리 팀에 합류했습니다. React/Redux 기반 웹 에디터
+                            개발에 참여했고, Draft.js 자막 에디터를 유지·보수했습니다.
                         </p>
-                        <p><strong>역할:</strong> DevOps 리드 & 백엔드</p>
-                        <p><strong>기간:</strong> 2025년 8월 – 현재</p>
-                        <p><strong>팀 구성:</strong> 5명 (프론트엔드 2, 백엔드 3)</p>
+                        <p>
+                            자막 편집 플로우의 UI/UX를 개선하고, 자막 싱크·정렬 과정의 버그를 해결했으며, 백엔드 엔지니어들과
+                            협업해 API 스펙을 조정했습니다. 프로덕션 규모 React 앱의 구조와 고객 피드백·기술 제약의 균형을 배웠습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title">WIPS — <span class="en">Frontend Developer Intern</span><span class="ko hidden">프론트엔드 개발자 인턴</span></div>
+                    <div class="entry-meta en">Seoul, Korea | Aug 2021 - Dec 2021</div>
+                    <div class="entry-meta ko hidden">서울 | 2021년 8월 - 12월</div>
+                    <div class="en">
+                        <p>
+                            Participated in a new in-house CRM system build, implementing customer-management screens and
+                            data-retrieval features with Vue.js.
+                        </p>
+                        <p>
+                            Worked closely with planning and infrastructure teams through weekly meetings to gather requirements
+                            and reflect real-world feedback into UI improvements — full exposure to the product development
+                            lifecycle from requirements to iteration.
+                        </p>
+                    </div>
+                    <div class="ko hidden">
+                        <p>
+                            사내 CRM 시스템 신규 개발 프로젝트에 참여해 Vue.js 기반 고객 관리 화면과 데이터 조회 기능을 구현했습니다.
+                        </p>
+                        <p>
+                            기획 및 인프라 팀과의 주간 미팅으로 요구사항을 정리하고, 현업 피드백을 반영한 UI 개선을 수행했습니다.
+                            요구사항 수집부터 구현, 반복 개선까지 제품 개발 전체 라이프사이클을 경험했습니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activities -->
+            <section class="section" id="activities">
+                <h2 class="en">Activities</h2>
+                <h2 class="ko hidden">대외활동</h2>
+
+                <div class="entry">
+                    <div class="entry-title en">Developer, YAPP</div>
+                    <div class="entry-title ko hidden">YAPP 개발자</div>
+                    <div class="entry-meta en">Corporate-backed IT club | Nov 2022 - Feb 2023</div>
+                    <div class="entry-meta ko hidden">기업형 연합 IT 동아리 | 2022년 11월 - 2023년 2월</div>
+                    <p class="en">Built an Android WebView screen with React and Recoil.</p>
+                    <p class="ko hidden">React, Recoil을 사용하여 안드로이드 네이티브 어플리케이션 내 웹뷰 화면 구현.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">Developer, CMC</div>
+                    <div class="entry-title ko hidden">CMC 개발자</div>
+                    <div class="entry-meta en">Central MakeUs, app-launch club | Apr 2022 - Jul 2022</div>
+                    <div class="entry-meta ko hidden">수익형 앱 런칭 동아리 Central MakeUs | 2022년 4월 - 7월</div>
+                    <p class="en">Shipped a hybrid app built with React Native and Redux Toolkit.</p>
+                    <p class="ko hidden">React Native와 Redux Toolkit을 통해 개발한 하이브리드 어플리케이션 출시.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">Frontend Developer, WoozLabs (Monomail)</div>
+                    <div class="entry-title ko hidden">WoozLabs (Monomail) 프론트엔드 개발자</div>
+                    <div class="entry-meta en">Team side project | Jun 2024 - Dec 2024</div>
+                    <div class="entry-meta ko hidden">개발 프로젝트 팀 | 2024년 6월 - 12월</div>
+                    <p class="en">Built a React/Electron desktop app for Gemini-assisted email drafting — signature management plus AI-powered tone/summary editing.</p>
+                    <p class="ko hidden">Gemini를 활용한 이메일 관리·작성 데스크탑 앱(React, Electron) 개발. 서명 관리 및 AI 기반 작성 내용 검정·요약·톤 변경 기능 구현.</p>
+                </div>
+            </section>
+
+            <!-- Awards -->
+            <section class="section" id="awards">
+                <h2 class="en">Awards & Honors</h2>
+                <h2 class="ko hidden">수상 경력</h2>
+
+                <div class="entry">
+                    <div class="entry-title en">Samsung SW AI Academy Special Project – 2nd Place</div>
+                    <div class="entry-title ko hidden">삼성 청년 SW 아카데미 특화 프로젝트 – 우수상 2위</div>
+                    <div class="entry-meta en">Samsung Electronics | Oct 2025</div>
+                    <div class="entry-meta ko hidden">삼성전자 | 2025년 10월</div>
+                    <p class="en">Developed a banking application for foreign residents in Korea.</p>
+                    <p class="ko hidden">국내 거주 외국인 전용 오픈 뱅킹 서비스 개발.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">Samsung SW AI Academy Joint Project – 1st Place</div>
+                    <div class="entry-title ko hidden">삼성 청년 SW 아카데미 공통 프로젝트 – 우수상 1위</div>
+                    <div class="entry-meta en">Samsung Electronics | Aug 2025</div>
+                    <div class="entry-meta ko hidden">삼성전자 | 2025년 8월</div>
+                    <p class="en">Built a real-time video co-viewing & chat service, reaching 1,000 MAU.</p>
+                    <p class="ko hidden">실시간 영상 동시 시청 및 채팅 서비스 개발, MAU 1,000명 달성.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">Inha University Capstone Design Fair – 2nd Place</div>
+                    <div class="entry-title ko hidden">인하대학교 캡스톤디자인 성과발표회 – 우수상 2위</div>
+                    <div class="entry-meta en">Inha University | Dec 2024</div>
+                    <div class="entry-meta ko hidden">인하대학교 소프트웨어융합대학 | 2024년 12월</div>
+                    <p class="en">Developed a mutual braille/text translation application.</p>
+                    <p class="ko hidden">점자를 묵자로, 묵자를 점자로 상호 번역해주는 애플리케이션 개발.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">Silicon Valley Koreans Hackathon – 2nd Place</div>
+                    <div class="entry-title ko hidden">Silicon Valley Koreans Hackathon – 2위</div>
+                    <div class="entry-meta en">San Francisco, CA | Nov 2023</div>
+                    <div class="entry-meta ko hidden">샌프란시스코 | 2023년 11월</div>
+                    <p class="en">Built "Know Your Neighbors," a map-based regional safety-info sharing service.</p>
+                    <p class="ko hidden">샌프란시스코 지역을 중심으로 전세계 지역별 치안 정보를 지도 기반으로 공유하는 웹 서비스 'Know Your Neighbors' 개발.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">IGRUS IT Competition – 1st Place</div>
+                    <div class="entry-title ko hidden">IGRUS IT 경진대회 – 1위</div>
+                    <div class="entry-meta en">Inha University, IGRUS club | Oct 2020</div>
+                    <div class="entry-meta ko hidden">인하대학교 정보통신처 산하 동아리 IGRUS | 2020년 10월</div>
+                    <p class="en">Built a Unity-based 3D game introducing the CS department to incoming freshmen.</p>
+                    <p class="ko hidden">컴퓨터공학과 신입생들을 위한 Unity 기반 학교 소개 3D 게임 구현.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title en">Inha University Ideathon Competition – 2nd Place</div>
+                    <div class="entry-title ko hidden">인하대학교 아이디어톤 경진대회 – 2위 컴퓨터공학과장상</div>
+                    <div class="entry-meta en">Inha University, CS Dept. | Mar 2020</div>
+                    <div class="entry-meta ko hidden">인하대학교 컴퓨터공학과 | 2020년 3월</div>
+                    <p class="en">Proposed an AR/VR character-restoration idea using photos and videos.</p>
+                    <p class="ko hidden">사진 및 영상 기반 AR/VR 인물 복원 아이디어 제안.</p>
+                </div>
+            </section>
+
+            <!-- Education & Certifications -->
+            <section class="section" id="education">
+                <h2 class="en">Education & Certifications</h2>
+                <h2 class="ko hidden">학력 & 자격</h2>
+
+                <div class="edu-grid">
+                    <div class="edu-block">
+                        <h3 class="en">Education</h3>
+                        <h3 class="ko hidden">학력</h3>
+                        <div class="item">
+                            <div class="item-title">Inha University</div>
+                            <div class="item-date en">B.S. Computer Science | 2019 - 2025</div>
+                            <div class="item-date ko hidden">컴퓨터공학과 학사 | 2019 - 2025</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-title en">SSAFY — Java Track</div>
+                            <div class="item-title ko hidden">SSAFY — 자바 전공 트랙</div>
+                            <div class="item-date en">Samsung SW AI Academy | Jan 2025 - Dec 2025</div>
+                            <div class="item-date ko hidden">삼성 청년 SW AI 아카데미 | 2025년 1월 - 12월</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-title en">Taylor University — Exchange Student</div>
+                            <div class="item-title ko hidden">Taylor University — 교환학생</div>
+                            <div class="item-date en">Upland, Indiana, USA | Jan 2023 - May 2023</div>
+                            <div class="item-date ko hidden">미국 인디애나 | 2023년 1월 - 5월</div>
+                        </div>
                     </div>
 
-                    <div class="modal-tech">
-                        <span class="tech-tag">Java · Spring Boot</span>
-                        <span class="tech-tag">MySQL · MongoDB · Redis</span>
-                        <span class="tech-tag">Docker · GitLab CI/CD</span>
-                        <span class="tech-tag">NGINX Reverse Proxy</span>
-                        <span class="tech-tag">AWS EC2 · S3 · CloudFront</span>
-                        <span class="tech-tag">OpenAI GPT API</span>
+                    <div class="edu-block">
+                        <h3 class="en">Certifications</h3>
+                        <h3 class="ko hidden">자격증</h3>
+                        <div class="item">
+                            <div class="item-title">AWS Solutions Architect – Associate</div>
+                            <div class="item-date en">AWS | Sep 2025</div>
+                            <div class="item-date ko hidden">AWS | 2025년 9월</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-title">SQLD – SQL Developer</div>
+                            <div class="item-date en">Korea Data Agency | Sep 2024</div>
+                            <div class="item-date ko hidden">한국데이터산업진흥원 | 2024년 9월</div>
+                        </div>
                     </div>
 
-                    <!-- Project Links -->
-                    <div class="project-links">
-                        <h3 class="en">🔗 Live Services & Repository</h3>
-                        <h3 class="ko hidden">🔗 라이브 서비스 & 레포지토리</h3>
-                        <div class="project-links-grid">
-                            <div class="project-link-item">
-                                <span class="project-link-label en">DuckOn Service:</span>
-                                <span class="project-link-label ko hidden">덕온 서비스:</span>
-                                <a href="https://duckon.site" target="_blank" rel="noopener noreferrer">duckon.site</a>
-                            </div>
-                            <div class="project-link-item">
-                                <span class="project-link-label en">MemeDuck Platform:</span>
-                                <span class="project-link-label ko hidden">밈덕 플랫폼:</span>
-                                <a href="https://memeduck.site" target="_blank" rel="noopener noreferrer">memeduck.site</a>
-                            </div>
-                            <div class="project-link-item">
-                                <span class="project-link-label en">GitHub Repository:</span>
-                                <span class="project-link-label ko hidden">깃허브 레포지토리:</span>
-                                <a href="https://github.com/DuckOn-A404" target="_blank" rel="noopener noreferrer">github.com/DuckOn-A404</a>
-                            </div>
+                    <div class="edu-block">
+                        <h3 class="en">Languages</h3>
+                        <h3 class="ko hidden">어학</h3>
+                        <div class="item">
+                            <div class="item-title">OPIc — AL (Advanced Low)</div>
+                            <div class="item-date en">ACTFL | Feb 2025</div>
+                            <div class="item-date ko hidden">ACTFL | 2025년 2월</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-title">TOEIC — 945 / 990</div>
+                            <div class="item-date en">ETS | Sep 2024</div>
+                            <div class="item-date ko hidden">ETS | 2024년 9월</div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Contribution Section -->
-                <div id="duckon-contribution" class="modal-section">
-                    <div class="en">
-                        <h3>1. Complete DevOps Architecture Design</h3>
-                        <ul>
-                            <li>Designed and operated AWS infrastructure (EC2, S3, CloudFront, Route 53)</li>
-                            <li>Built separate production & development environments using Docker and environment-specific pipelines</li>
-                            <li>Implemented GitLab CI/CD with automated Docker image builds, NGINX reloads, and zero-downtime deployments</li>
-                        </ul>
+            <!-- Skills -->
+            <section class="section" id="skills">
+                <h2 class="en">Technical Skills</h2>
+                <h2 class="ko hidden">기술 스택</h2>
 
-                        <h3>2. Frontend Performance Optimization</h3>
+                <div class="skills-grid">
+                    <div class="skill-block">
+                        <h3 class="en">Backend & APIs</h3>
+                        <h3 class="ko hidden">백엔드 & API</h3>
                         <ul>
-                            <li>Migrated static assets to <strong>S3 + CloudFront CDN</strong></li>
-                            <li>Improved <strong>TTFB and LCP by ~90%</strong> via CDN caching, compression, and cache invalidation strategies</li>
-                            <li>Configured CloudFront OAC for enhanced security and added invalidation scripts to CI pipeline</li>
-                        </ul>
-
-                        <h3>3. Real-time AI Translation Chat</h3>
-                        <ul>
-                            <li>Implemented real-time in-room chat translation using <strong>OpenAI GPT API</strong></li>
-                            <li>Enabled seamless multilingual communication between global fans</li>
-                            <li>Optimized API calls to balance cost and user experience</li>
-                        </ul>
-
-                        <h3>4. Monitoring & Reliability</h3>
-                        <ul>
-                            <li>Built real-time monitoring system with <strong>AWS CloudWatch, Lambda, SNS, EventBridge</strong></li>
-                            <li>Automated Java error log alerts to Mattermost</li>
-                            <li>Daily infrastructure reports (CPU, memory, disk, Docker container status) sent at 08:30</li>
-                        </ul>
-
-                        <h3>5. Production Issue Resolution</h3>
-                        <ul>
-                            <li>Solved GitLab Runner disk exhaustion by redesigning build pipelines and Docker layer reuse</li>
-                            <li>Optimized database queries and configured Redis caching for frequently accessed data</li>
+                            <li><strong>Java</strong> <span class="en">— core language for all backend services</span><span class="ko hidden">— 모든 백엔드 서비스의 핵심 언어</span></li>
+                            <li><strong>Spring Boot</strong> <span class="en">— main API framework</span><span class="ko hidden">— API 개발 메인 프레임워크</span></li>
+                            <li><strong>JPA / Hibernate</strong> <span class="en">— ORM</span><span class="ko hidden">— 데이터베이스 ORM</span></li>
+                            <li><span class="en">REST API design</span><span class="ko hidden">REST API 설계</span></li>
+                            <li><span class="en">JWT / OAuth</span><span class="ko hidden">JWT / OAuth 인증</span></li>
                         </ul>
                     </div>
 
-                    <div class="ko hidden">
-                        <h3>1. 전체 DevOps 아키텍처 설계</h3>
+                    <div class="skill-block">
+                        <h3 class="en">Cloud & DevOps</h3>
+                        <h3 class="ko hidden">클라우드 & DevOps</h3>
                         <ul>
-                            <li>AWS 인프라 설계 및 운영 (EC2, S3, CloudFront, Route 53)</li>
-                            <li>Docker 기반 운영/개발 환경 분리 구축 및 환경별 파이프라인 구성</li>
-                            <li>GitLab CI/CD로 자동화된 Docker 이미지 빌드, NGINX 재시작, 무중단 배포 구현</li>
+                            <li><strong>AWS</strong> <span class="en">— EC2, S3, CloudFront</span><span class="ko hidden">— EC2, S3, CloudFront</span></li>
+                            <li><strong>Docker</strong> <span class="en">— container orchestration & deployment</span><span class="ko hidden">— 컨테이너 오케스트레이션 및 배포</span></li>
+                            <li><strong>GitLab CI/CD</strong> <span class="en">— automated pipelines</span><span class="ko hidden">— 자동화 파이프라인</span></li>
+                            <li><strong>NGINX</strong> <span class="en">— reverse proxy, SSL, load balancing</span><span class="ko hidden">— 리버스 프록시, SSL, 로드밸런싱</span></li>
+                            <li><span class="en">Zero-downtime (blue-green / rolling) deploys</span><span class="ko hidden">무중단(블루그린/롤링) 배포</span></li>
                         </ul>
+                    </div>
 
-                        <h3>2. 프론트엔드 성능 최적화</h3>
+                    <div class="skill-block">
+                        <h3 class="en">Databases</h3>
+                        <h3 class="ko hidden">데이터베이스</h3>
                         <ul>
-                            <li>정적 리소스를 <strong>S3 + CloudFront CDN</strong>으로 마이그레이션</li>
-                            <li>CDN 캐싱, 압축, 캐시 무효화 전략을 통해 <strong>TTFB/LCP 약 90% 개선</strong></li>
-                            <li>CloudFront OAC 설정으로 보안 강화 및 CI 파이프라인에 캐시 무효화 스크립트 추가</li>
-                        </ul>
-
-                        <h3>3. 실시간 AI 번역 채팅</h3>
-                        <ul>
-                            <li><strong>OpenAI GPT API</strong>를 활용한 실시간 채팅 번역 기능 구현</li>
-                            <li>전 세계 팬들이 언어와 관계없이 소통할 수 있는 환경 구축</li>
-                            <li>비용과 사용자 경험의 균형을 고려한 API 호출 최적화</li>
-                        </ul>
-
-                        <h3>4. 모니터링 & 안정성</h3>
-                        <ul>
-                            <li><strong>AWS CloudWatch, Lambda, SNS, EventBridge</strong> 기반 실시간 모니터링 시스템 구축</li>
-                            <li>Java 에러 로그 발생 시 Mattermost로 실시간 알림</li>
-                            <li>매일 08:30에 인프라 상태 리포트 (CPU, 메모리, 디스크, Docker 컨테이너 상태) 자동 발송</li>
-                        </ul>
-
-                        <h3>5. 운영 이슈 해결</h3>
-                        <ul>
-                            <li>GitLab Runner 디스크 용량 부족 문제를 빌드 파이프라인 재설계 및 Docker 레이어 재사용으로 해결</li>
-                            <li>데이터베이스 쿼리 최적화 및 자주 접근하는 데이터에 대한 Redis 캐싱 구성</li>
+                            <li><strong>MySQL</strong> <span class="en">— relational, structured data</span><span class="ko hidden">— 구조화된 데이터를 위한 관계형 DB</span></li>
+                            <li><strong>MongoDB</strong> <span class="en">— flexible schema (NoSQL)</span><span class="ko hidden">— 유연한 스키마 (NoSQL)</span></li>
+                            <li><strong>Redis</strong> <span class="en">— caching, sessions, pub/sub</span><span class="ko hidden">— 캐싱, 세션 관리, Pub/Sub</span></li>
+                            <li><span class="en">Query optimization & indexing</span><span class="ko hidden">쿼리 최적화 및 인덱싱</span></li>
                         </ul>
                     </div>
                 </div>
+            </section>
 
-                <!-- Architecture Section -->
-                <div id="duckon-architecture" class="modal-section">
-                    <div class="en">
-                        <h3>Architecture Evolution</h3>
-                        <figure class="detail-image">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216766-2f0f31e7-03d9-4ae0-bbc3-6c60a2db68c1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002413Z&X-Amz-Expires=300&X-Amz-Signature=f987aa7e067ca8fb33d61d9c96a36313827050d82d793bd8268f8a106c9ab72b&X-Amz-SignedHeaders=host" alt="DuckOn Architecture Evolution"> -->
-                            <img src="./assets/img/duckon-arch-evolution.png" alt="DuckOn Architecture Evolution">
-                            <figcaption>Migration from monolithic architecture to multi-cloud distributed system</figcaption>
-                        </figure>
+            <!-- Contact -->
+            <section class="section" id="contact">
+                <h2 class="en">Get In Touch</h2>
+                <h2 class="ko hidden">연락하기</h2>
 
-                        <h3>Current Infrastructure</h3>
-                        <figure class="detail-image">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216767-356c8747-7daa-4728-b9f5-aa75d99c1a43.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002437Z&X-Amz-Expires=300&X-Amz-Signature=5fad1cf070393ac6705ee6c5331860f99faf52f45c4b954f26ba3aa797fef944&X-Amz-SignedHeaders=host" alt="DuckOn Infrastructure Diagram"> -->
-                            <img src="./assets/img/duckon-infrastructure.png" alt="DuckOn Infrastructure Diagram">
-                            <figcaption>Complete AWS infrastructure with separate prod/dev environments, CDN, monitoring system</figcaption>
-                        </figure>
-
-                        <p>
-                            The system is designed to handle high concurrent users with real-time streaming, chat, and meme uploads.
-                            All components are containerized with Docker and deployed via GitLab CI/CD pipelines.
-                        </p>
-                    </div>
-
-                    <div class="ko hidden">
-                        <h3>아키텍처 진화</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/duckon-arch-evolution.png" alt="DuckOn 아키텍처 진화">
-                            <figcaption>모놀리식 구조에서 멀티 클라우드 분산 시스템으로 마이그레이션</figcaption>
-                        </figure>
-
-                        <h3>현재 인프라 구성</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/duckon-infrastructure.png" alt="DuckOn 인프라 다이어그램">
-                            <figcaption>운영/개발 환경 분리, CDN, 모니터링 시스템을 포함한 완전한 AWS 인프라</figcaption>
-                        </figure>
-
-                        <p>
-                            실시간 스트리밍, 채팅, 밈 업로드를 처리할 수 있도록 높은 동시 사용자를 고려해 설계했습니다.
-                            모든 컴포넌트는 Docker로 컨테이너화되어 GitLab CI/CD 파이프라인을 통해 배포됩니다.
-                        </p>
-                    </div>
+                <div class="contact-list">
+                    <div class="row"><span class="en">Email</span><span class="ko hidden">이메일</span><a href="mailto:qja086351@naver.com">qja086351@naver.com</a></div>
+                    <div class="row"><span class="en">Phone</span><span class="ko hidden">전화</span><span>(+82) 10-8399-7482</span></div>
+                    <div class="row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/yejin-kim-7b4078274/" target="_blank">linkedin.com/in/yejin-kim</a></div>
+                    <div class="row"><span>GitHub</span><a href="https://github.com/rocher71" target="_blank">github.com/rocher71</a></div>
                 </div>
-
-                <!-- Results Section -->
-                <div id="duckon-results" class="modal-section">
-                    <div class="en">
-                        <div class="result-grid">
-                            <div class="result-item">
-                                <div class="result-item-title">~90% Performance Improvement</div>
-                                <div class="result-item-body">
-                                    Migrated frontend to S3 + CloudFront CDN, dramatically reducing TTFB (5100ms → 350ms)
-                                    and LCP (330ms → 100ms) through global edge caching.
-                                </div>
-                            </div>
-
-                            <div class="result-item">
-                                <div class="result-item-title">~1,000 MAU</div>
-                                <div class="result-item-body">
-                                    Successfully serving approximately 1,000 monthly active users with real-time streaming
-                                    and chat capabilities, maintaining stable uptime.
-                                </div>
-                            </div>
-
-                            <div class="result-item">
-                                <div class="result-item-title">Zero-downtime Deployments</div>
-                                <div class="result-item-body">
-                                    Implemented GitLab CI/CD pipelines with Docker and NGINX, enabling seamless production
-                                    deployments without service interruption.
-                                </div>
-                            </div>
-
-                            <div class="result-item">
-                                <div class="result-item-title">Real-time Monitoring System</div>
-                                <div class="result-item-body">
-                                    Built automated monitoring with AWS CloudWatch, Lambda, SNS – instant error alerts
-                                    and daily infrastructure health reports.
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 style="margin-top: 2rem;">CloudFront Performance Metrics</h3>
-                        <figure class="detail-image">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216769-7d639cd7-dd12-4fa9-be61-841b7878e2b2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002503Z&X-Amz-Expires=300&X-Amz-Signature=c15644fb781bea15e597eca0a78ef18280e67af62edda563780d57f27405fd20&X-Amz-SignedHeaders=host" alt="CloudFront Performance Improvement"> -->
-                            <img src="./assets/img/duckon-performance.png" alt="CloudFront Performance Improvement">
-                            <figcaption>TTFB and LCP improvements before/after CloudFront migration</figcaption>
-                        </figure>
-                    </div>
-
-                    <div class="ko hidden">
-                        <div class="result-grid">
-                            <div class="result-item">
-                                <div class="result-item-title">~90% 성능 개선</div>
-                                <div class="result-item-body">
-                                    프론트엔드를 S3 + CloudFront CDN으로 마이그레이션해 글로벌 엣지 캐싱을 통해
-                                    TTFB (5100ms → 350ms), LCP (330ms → 100ms)를 획기적으로 단축했습니다.
-                                </div>
-                            </div>
-
-                            <div class="result-item">
-                                <div class="result-item-title">약 1,000 MAU</div>
-                                <div class="result-item-body">
-                                    실시간 스트리밍 및 채팅 기능으로 약 1,000명의 월간 활성 사용자를 안정적으로 서빙하며
-                                    높은 가동률을 유지하고 있습니다.
-                                </div>
-                            </div>
-
-                            <div class="result-item">
-                                <div class="result-item-title">무중단 배포</div>
-                                <div class="result-item-body">
-                                    Docker와 NGINX를 활용한 GitLab CI/CD 파이프라인으로 서비스 중단 없이
-                                    운영 환경에 배포할 수 있는 체계를 구축했습니다.
-                                </div>
-                            </div>
-
-                            <div class="result-item">
-                                <div class="result-item-title">실시간 모니터링 시스템</div>
-                                <div class="result-item-body">
-                                    AWS CloudWatch, Lambda, SNS 기반 자동화된 모니터링으로 에러 즉시 알림 및
-                                    일일 인프라 상태 리포트를 구현했습니다.
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 style="margin-top: 2rem;">CloudFront 성능 지표</h3>
-                        <figure class="detail-image">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216769-7d639cd7-dd12-4fa9-be61-841b7878e2b2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002503Z&X-Amz-Expires=300&X-Amz-Signature=c15644fb781bea15e597eca0a78ef18280e67af62edda563780d57f27405fd20&X-Amz-SignedHeaders=host" alt="CloudFront 성능 개선"> -->
-                            <img src="./assets/img/duckon-performance.png" alt="CloudFront 성능 개선">
-                            <figcaption>CloudFront 마이그레이션 전후 TTFB 및 LCP 개선 결과</figcaption>
-                        </figure>
-                    </div>
-                </div>
-
-                <!-- Features Section -->
-                <div id="duckon-features" class="modal-section">
-                    <div class="en">
-                        <h3>Real-time AI Translation Chat</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/duckon-translation.png" alt="AI Translation Chat">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216768-020e8fa6-d96c-4d65-bf01-83d2c247d7a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002527Z&X-Amz-Expires=300&X-Amz-Signature=a1ce24edce8771e1cefa0cdfee2077855f43047305d6b55eb6998f75c6e208bc&X-Amz-SignedHeaders=host" alt="AI Translation Chat"> -->
-                            <figcaption>OpenAI GPT API-powered real-time translation enabling multilingual communication</figcaption>
-                        </figure>
-
-                        <h3>Infrastructure Monitoring Dashboard</h3>
-                        <figure class="detail-image">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216765-5732ae5a-4934-4615-a773-e00a54883d27.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002547Z&X-Amz-Expires=300&X-Amz-Signature=bd857eeb390adee3186394240462a621fa142f80b1212136d0d787aff8fff461&X-Amz-SignedHeaders=host" alt="Monitoring System"> -->
-                            <img src="./assets/img/duckon-monitoring.png" alt="Monitoring System">
-                            <figcaption>Real-time error alerts and daily infrastructure health reports via Mattermost</figcaption>
-                        </figure>
-
-                        <h3>MemeDuck Platform</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/memeduck-platform.png" alt="MemeDuck Platform">
-                            <!-- <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/68051794/521216770-b52abd38-2239-41de-8cc8-e6f49dc98e3a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251203T002603Z&X-Amz-Expires=300&X-Amz-Signature=d48e45b86990406ca08e6e156da7a183c53548e2c59abe85839c55e2764db89b&X-Amz-SignedHeaders=host" alt="MemeDuck Platform"> -->
-                            <figcaption>K-pop meme community platform with upload, search, browsing features</figcaption>
-                        </figure>
-                    </div>
-
-                    <div class="ko hidden">
-                        <h3>실시간 AI 번역 채팅</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/duckon-translation.png" alt="AI 번역 채팅">
-                            <figcaption>OpenAI GPT API 기반 실시간 번역으로 다국어 소통 지원</figcaption>
-                        </figure>
-
-                        <h3>인프라 모니터링 대시보드</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/duckon-monitoring.png" alt="모니터링 시스템">
-                            <figcaption>Mattermost를 통한 실시간 에러 알림 및 일일 인프라 상태 리포트</figcaption>
-                        </figure>
-
-                        <h3>MemeDuck 플랫폼</h3>
-                        <figure class="detail-image">
-                            <img src="./assets/img/memeduck-platform.png" alt="MemeDuck 플랫폼">
-                            <figcaption>K-pop 밈 커뮤니티 플랫폼 - 업로드, 검색, 탐색 기능</figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
-    <!-- XL8 Experience Modal -->
-    <div id="xl8-modal" class="modal-backdrop hidden" onclick="closeModal('xl8-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">XL8 – Software Engineering Intern</span>
-                    <span class="ko hidden">XL8 – 소프트웨어 엔지니어 인턴</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('xl8-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="en">
-                    <p>
-                        At XL8, I joined a Silicon Valley team building an AI-powered subtitle editing platform used by real customers.
-                        I contributed to a React/Redux-based web editor and helped maintain a Draft.js subtitle editor.
-                    </p>
-                    <p>
-                        I implemented UI/UX improvements for editing flows, fixed edge cases in subtitle alignment and timeline syncing,
-                        and collaborated with backend engineers to adjust APIs.
-                    </p>
-                    <p>
-                        This experience taught me how production-scale React applications are structured, how teams manage
-                        releases and code reviews, and how product decisions balance customer feedback with technical constraints.
-                    </p>
-                </div>
-                <div class="ko hidden">
-                    <p>
-                        XL8에서는 실제 고객이 사용하는 AI 자막 편집 플랫폼을 만드는 실리콘밸리 팀에 합류했습니다.
-                        React/Redux 기반 웹 에디터 개발에 참여했고, Draft.js 자막 에디터를 유지·보수했습니다.
-                    </p>
-                    <p>
-                        자막 편집 플로우의 UI/UX를 개선하고, 자막 싱크·정렬 과정에서 발생하는 버그를 해결했으며,
-                        백엔드 엔지니어들과 협업해 API 스펙 조정을 경험했습니다.
-                    </p>
-                    <p>
-                        프로덕션 규모 React 애플리케이션 구조, 코드 리뷰·릴리즈 관리 방식, 고객 피드백과
-                        기술적 제약을 동시에 고려하는 제품 의사결정 과정을 배웠습니다.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- WIPS Experience Modal -->
-    <div id="wips-modal" class="modal-backdrop hidden" onclick="closeModal('wips-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">WIPS – Frontend Developer Intern</span>
-                    <span class="ko hidden">WIPS – 프론트엔드 개발자 인턴</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('wips-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="en">
-                    <p>
-                        At WIPS, I participated in the development of a new in-house CRM system, implementing customer management screens
-                        and data retrieval features using Vue.js.
-                    </p>
-                    <p>
-                        I worked closely with the planning and infrastructure teams through weekly meetings to gather requirements,
-                        reflect real-world feedback into UI improvements, and perform basic maintenance tasks.
-                    </p>
-                    <p>
-                        This experience gave me hands-on exposure to the full product development lifecycle, from requirements gathering
-                        to implementation and iteration based on user feedback.
-                    </p>
-                </div>
-                <div class="ko hidden">
-                    <p>
-                        WIPS에서는 사내 CRM 시스템 신규 개발 프로젝트에 참여하여 Vue.js 기반 고객 관리 화면과
-                        데이터 조회 기능을 구현했습니다.
-                    </p>
-                    <p>
-                        기획 및 인프라 팀과의 주간 미팅을 통해 요구사항을 정리하고, 현업 피드백을 반영한 UI 개선 및
-                        간단한 유지보수 작업을 수행했습니다.
-                    </p>
-                    <p>
-                        요구사항 수집부터 구현, 사용자 피드백 기반 반복 개선까지 제품 개발 전체 라이프사이클을
-                        경험할 수 있었습니다.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Backend Skills Modal -->
-    <div id="backend-modal" class="modal-backdrop hidden" onclick="closeModal('backend-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">Backend & API Development</span>
-                    <span class="ko hidden">백엔드 & API 개발</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('backend-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="en">
-                    <p>
-                        I focus on backend engineering with <strong>Java and Spring Boot</strong>, designing REST APIs and data models
-                        that are easy to maintain and extend.
-                    </p>
-                    <ul>
-                        <li><strong>Java</strong> – Core language for all backend services</li>
-                        <li><strong>Spring Boot</strong> – Main framework for API development</li>
-                        <li><strong>JPA/Hibernate</strong> – ORM for database interaction</li>
-                        <li><strong>REST API Design</strong> – Clean, maintainable API architecture</li>
-                        <li><strong>Authentication & Authorization</strong> – JWT, OAuth integration</li>
-                    </ul>
-                </div>
-                <div class="ko hidden">
-                    <p>
-                        <strong>Java와 Spring Boot</strong>를 중심으로, 유지·확장하기 쉬운 REST API와 데이터 모델을 설계합니다.
-                    </p>
-                    <ul>
-                        <li><strong>Java</strong> – 모든 백엔드 서비스의 핵심 언어</li>
-                        <li><strong>Spring Boot</strong> – API 개발을 위한 메인 프레임워크</li>
-                        <li><strong>JPA/Hibernate</strong> – 데이터베이스 상호작용을 위한 ORM</li>
-                        <li><strong>REST API 설계</strong> – 깔끔하고 유지보수 가능한 API 아키텍처</li>
-                        <li><strong>인증 및 권한</strong> – JWT, OAuth 통합</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Infrastructure Modal -->
-    <div id="infra-modal" class="modal-backdrop hidden" onclick="closeModal('infra-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">Cloud & DevOps</span>
-                    <span class="ko hidden">클라우드 & DevOps</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('infra-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="en">
-                    <p>
-                        I enjoy owning the full shipping process – from containerizing services to configuring reverse proxies
-                        and monitoring production.
-                    </p>
-                    <ul>
-                        <li><strong>AWS</strong> – EC2, S3, CloudFront for production infrastructure</li>
-                        <li><strong>Docker</strong> – Container orchestration and deployment</li>
-                        <li><strong>GitLab CI/CD</strong> – Automated build, test, and deployment pipelines</li>
-                        <li><strong>NGINX</strong> – Reverse proxy, SSL termination, load balancing</li>
-                        <li><strong>Zero-downtime deployment</strong> – Blue-green and rolling deployments</li>
-                    </ul>
-                </div>
-                <div class="ko hidden">
-                    <p>
-                        서비스 컨테이너라이징부터 리버스 프록시 설정, 모니터링까지 배포 전 과정을 책임집니다.
-                    </p>
-                    <ul>
-                        <li><strong>AWS</strong> – EC2, S3, CloudFront를 활용한 운영 인프라</li>
-                        <li><strong>Docker</strong> – 컨테이너 오케스트레이션 및 배포</li>
-                        <li><strong>GitLab CI/CD</strong> – 자동화된 빌드, 테스트, 배포 파이프라인</li>
-                        <li><strong>NGINX</strong> – 리버스 프록시, SSL 종단, 로드 밸런싱</li>
-                        <li><strong>무중단 배포</strong> – Blue-green, 롤링 배포</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Database Modal -->
-    <div id="database-modal" class="modal-backdrop hidden" onclick="closeModal('database-modal')">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <span class="en">Database Management</span>
-                    <span class="ko hidden">데이터베이스 관리</span>
-                </h2>
-                <button type="button" class="modal-close" onclick="closeModal('database-modal')">
-                    <span class="en">Close</span>
-                    <span class="ko hidden">닫기</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="en">
-                    <p>
-                        Experience with multiple database types for different use cases.
-                    </p>
-                    <ul>
-                        <li><strong>MySQL</strong> – Relational database for structured data</li>
-                        <li><strong>MongoDB</strong> – NoSQL for flexible schema requirements</li>
-                        <li><strong>Redis</strong> – Caching, session management, pub/sub messaging</li>
-                        <li><strong>Query Optimization</strong> – Indexing, query analysis, performance tuning</li>
-                    </ul>
-                </div>
-                <div class="ko hidden">
-                    <p>
-                        다양한 사용 사례에 맞는 여러 데이터베이스 유형 경험.
-                    </p>
-                    <ul>
-                        <li><strong>MySQL</strong> – 구조화된 데이터를 위한 관계형 데이터베이스</li>
-                        <li><strong>MongoDB</strong> – 유연한 스키마 요구사항을 위한 NoSQL</li>
-                        <li><strong>Redis</strong> – 캐싱, 세션 관리, Pub/Sub 메시징</li>
-                        <li><strong>쿼리 최적화</strong> – 인덱싱, 쿼리 분석, 성능 튜닝</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p class="en">&copy; 2026 Yejin Kim. Built with passion and code.</p>
+        <p class="ko hidden">&copy; 2026 김예진. 열정과 코드로 만들었습니다.</p>
+    </footer>
 
     <script>
         let currentLang = 'en';
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ko' : 'en';
-
             const enElements = document.querySelectorAll('.en');
             const koElements = document.querySelectorAll('.ko');
             const btn = document.querySelector('.lang-toggle');
@@ -1971,86 +855,6 @@
                 btn.textContent = 'KR';
             }
         }
-
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            if (modal) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            if (modal) {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-        }
-
-        function switchTab(projectId, sectionId) {
-            // Hide all sections for this project
-            const allSections = document.querySelectorAll(`#${projectId}-modal .modal-section`);
-            allSections.forEach(section => section.classList.remove('active'));
-
-            // Show selected section
-            const targetSection = document.getElementById(`${projectId}-${sectionId}`);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-
-            // Update tab active states
-            const allTabs = document.querySelectorAll(`#${projectId}-modal .modal-tab`);
-            allTabs.forEach(tab => tab.classList.remove('active'));
-
-            // Add active class to clicked tabs (both EN and KO)
-            const clickedTabs = document.querySelectorAll(`#${projectId}-modal .modal-tab[onclick*="${sectionId}"]`);
-            clickedTabs.forEach(tab => tab.classList.add('active'));
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal-backdrop').forEach((m) => m.classList.add('hidden'));
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.project-card, .timeline-item, .skill-category, .contact-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
-        });
     </script>
 </body>
 </html>
