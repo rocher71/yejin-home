@@ -123,13 +123,18 @@
 
         /* Main content */
         .main .lede {
-            font-size: 1.15rem;
-            color: var(--ink-soft);
-            max-width: 640px;
-            margin-bottom: 3rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--ink);
+            max-width: 620px;
+            margin-bottom: 3.5rem;
+            padding-left: 1.25rem;
+            border-left: 3px solid var(--accent);
         }
 
-        .main .lede strong { color: var(--ink); }
+        .main .lede strong { color: var(--accent); font-weight: 600; }
 
         .section { padding-block: 2.75rem; border-top: 1px solid var(--line); scroll-margin-top: 2rem; }
 
@@ -290,7 +295,7 @@
             </nav>
 
             <div class="actions">
-                <button class="lang-toggle" onclick="toggleLanguage()">KR</button>
+                <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
                 <div class="social-links">
                     <a href="https://github.com/rocher71" target="_blank" title="GitHub">
                         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -308,8 +313,8 @@
                 <div class="fact">
                     <strong class="en">Inha University</strong>
                     <strong class="ko hidden">인하대학교</strong>
-                    <span class="en">B.S. Computer Science · SSAFY Java Track</span>
-                    <span class="ko hidden">컴퓨터공학과 학사 · SSAFY 자바 전공</span>
+                    <span class="en">B.S. Computer Science / SSAFY Java Track</span>
+                    <span class="ko hidden">컴퓨터공학과 학사 / SSAFY 자바 전공</span>
                 </div>
                 <div class="fact">
                     <strong class="en">Currently</strong>
@@ -320,7 +325,7 @@
                 <div class="fact">
                     <strong class="en">Languages</strong>
                     <strong class="ko hidden">어학</strong>
-                    <span>OPIc AL · TOEIC 945</span>
+                    <span>OPIc AL / TOEIC 945</span>
                 </div>
             </div>
         </aside>
@@ -333,7 +338,7 @@
                 no clicking required.
             </p>
             <p class="lede ko hidden">
-                AWS 인프라·CI/CD 파이프라인부터 K-Bap의 AI 기반 개발 프로세스까지, <strong>실서비스 기준의 백엔드·DevOps 시스템</strong>을
+                AWS 인프라와 CI/CD 파이프라인부터 K-Bap의 AI 기반 개발 프로세스까지, <strong>실서비스 기준의 백엔드 및 DevOps 시스템</strong>을
                 직접 설계하고 운영합니다. 이 페이지는 클릭 없이 스크롤만으로 모든 내용을 볼 수 있게 구성했습니다.
             </p>
 
@@ -346,22 +351,22 @@
                 <article class="case">
                     <div class="case-head">
                         <h3>K-Bap</h3>
-                        <div class="meta en">Product Planning & Full-stack · 2-person team · Apr 2026 – Nov 2026 (AI SW Maestro Program)</div>
-                        <div class="meta ko hidden">기획 & 풀스택 · 2인 팀 · 2026년 4월 – 11월 (AI SW 마에스트로 과정)</div>
+                        <div class="meta en">Product Planning & Full-stack / 2-person team / Apr 2026 – Nov 2026 (AI SW Maestro Program)</div>
+                        <div class="meta ko hidden">기획 & 풀스택 / 2인 팀 / 2026년 4월 – 11월 (AI SW 마에스트로 과정)</div>
                         <p class="summary en">
                             A food safety app for foreigners living in or visiting Korea. Scan a menu, and the app judges each
                             dish's risk against your allergies and dietary restrictions (halal, vegetarian, etc.) using LLM-based
                             OCR and a personalized risk engine. MVP covers 9 languages and 81 tracked ingredients.
                         </p>
                         <p class="summary ko hidden">
-                            한국에 거주·방문하는 외국인을 위한 음식 안전 앱입니다. 메뉴판을 스캔하면 LLM 기반 OCR로 음식을 인식하고,
-                            사용자의 알레르기·식이 제한(할랄, 채식 등)에 따라 개인화된 위험도를 보여줍니다. MVP는 9개 언어, 회피 재료 81종을 지원합니다.
+                            한국에 거주하거나 방문하는 외국인을 위한 음식 안전 앱입니다. 메뉴판을 스캔하면 LLM 기반 OCR로 음식을 인식하고,
+                            사용자의 알레르기와 식이 제한(할랄, 채식 등)에 따라 개인화된 위험도를 보여줍니다. MVP는 9개 언어와 회피 재료 81종을 지원합니다.
                         </p>
                     </div>
 
                     <div class="tags">
-                        <span class="tag">React Native · Expo</span>
-                        <span class="tag">Kotlin · Spring Boot</span>
+                        <span class="tag">React Native / Expo</span>
+                        <span class="tag">Kotlin / Spring Boot</span>
                         <span class="tag">MongoDB</span>
                         <span class="tag">OpenAPI Contract-First</span>
                         <span class="tag">LLM OCR</span>
@@ -370,7 +375,7 @@
 
                     <div class="stats">
                         <div class="stat"><div class="num">114 / 100%</div><div class="label en">FE commits co-authored with AI, all traceable to a session</div><div class="label ko hidden">FE 커밋 전부 AI 공동저작, 세션 URL로 역추적 가능</div></div>
-                        <div class="stat"><div class="num en">37 FR / 71 tasks</div><div class="num ko hidden">기능요구 37 / 태스크 71</div><div class="label en">Requirements decomposed into parallelizable, labeled tasks</div><div class="label ko hidden">병렬가능·담당·스토리로 3중 라벨링해 분해</div></div>
+                        <div class="stat"><div class="num en">37 FR / 71 tasks</div><div class="num ko hidden">기능요구 37 / 태스크 71</div><div class="label en">Requirements decomposed into parallelizable, labeled tasks</div><div class="label ko hidden">병렬 가능 여부, 담당, 스토리로 3중 라벨링해 분해</div></div>
                         <div class="stat"><div class="num">false-safe 0%</div><div class="label en">Safety-critical success criterion, enforced by tests + human review</div><div class="label ko hidden">테스트+사람 검증으로 강제한 안전 크리티컬 기준</div></div>
                     </div>
 
@@ -396,13 +401,13 @@
                     </div>
                     <div class="ko hidden">
                         <p>
-                            별도의 명세 레포를 단일 진실(SSOT)로 두고, 모든 기능이 <strong>specify → clarify → plan → tasks → implement</strong>
+                            별도의 명세 레포를 단일 진실 공급원(SSOT)으로 두고, 모든 기능이 <strong>specify → clarify → plan → tasks → implement</strong>
                             파이프라인을 거칩니다. 각 단계 사이에 사람 승인 게이트가 있어 AI가 임의로 다음 단계로 넘어갈 수 없습니다.
                         </p>
                         <ul>
                             <li>구조화된 Q&A 세션 3회로 요구사항을 확정 (결정 7건을 명세에 직접 기록)</li>
                             <li>16개 항목의 명세 품질 체크리스트를 통과해야 계획 단계 진입</li>
-                            <li>태스크를 3중 라벨링(병렬가능·담당 레포·유저스토리)해 코딩 전에 FE/BE 분담을 설계</li>
+                            <li>태스크를 3중 라벨링(병렬 가능 여부, 담당 레포, 유저스토리)해 코딩 전에 FE/BE 분담을 설계</li>
                         </ul>
                         <p>
                             팀 규칙을 유의적 버전으로 관리되는 '헌법' 문서(원칙 6개)로 명문화했습니다. 실제로 계약 드리프트를 겪은 뒤
@@ -427,7 +432,7 @@
                     </div>
                     <div class="ko hidden">
                         <ul>
-                            <li>프론트엔드 커밋 100%가 <strong>Co-Authored-By</strong> + 세션 URL을 포함해, 모든 변경을 AI 세션·Jira 티켓·결정 근거까지 역추적 가능</li>
+                            <li>프론트엔드 커밋 100%에 <strong>Co-Authored-By</strong>와 세션 URL이 포함되어, AI 세션, Jira 티켓, 결정 근거까지 모든 변경을 역추적 가능</li>
                             <li>반복되는 절차(릴리스, 이슈 품질 규격, 지식 이관) 6개를 셸 스크립트 대신 AI가 실행하는 자연어 '스킬'로 인코딩</li>
                             <li>긴 세션은 진행 로그와 재개 프로토콜로 인수인계해, 세션이 바뀌어도 맥락이 조용히 유실되지 않도록 함</li>
                         </ul>
@@ -456,13 +461,13 @@
                     <div class="ko hidden">
                         <p>
                             K-Bap은 "AI가 코드를 짰다"는 것을 보여주는 프로젝트가 아니라, AI를 둘러싼 프로세스를 제가 직접 설계했다는
-                            것을 보여주는 프로젝트입니다. 헌법·승인 게이트·권한 경계·완료 판정 기준 모두 그 설계의 일부입니다. AI는
+                            것을 보여주는 프로젝트입니다. 헌법, 승인 게이트, 권한 경계, 완료 판정 기준 모두 그 설계의 일부입니다. AI는
                             속도를 높이지만, 2인 팀의 안전 크리티컬 제품을 신뢰할 수 있게 만드는 건 그 주변의 거버넌스입니다.
                         </p>
                         <ul>
-                            <li>미국/EU/한국 식품안전 규정을 리서치해 알레르겐·식이 분류 81종 도메인 모델 구축</li>
+                            <li>미국/EU/한국 식품안전 규정을 리서치해 알레르겐과 식이 분류 81종 도메인 모델 구축</li>
                             <li>실제 메뉴판 OCR 데이터로 스냅샷 회귀 테스트를 잠가 안전 관련 회귀 방지</li>
-                            <li>이원 트래킹(Jira=이슈 정본, 별도 문서=출시 큰그림)으로 상태 정보의 이중화·드리프트 방지</li>
+                            <li>이원 트래킹(Jira=이슈 정본, 별도 문서=출시 큰그림)으로 상태 정보의 이중화와 드리프트 방지</li>
                         </ul>
                     </div>
                 </article>
@@ -471,8 +476,8 @@
                 <article class="case">
                     <div class="case-head">
                         <h3>DuckOn</h3>
-                        <div class="meta en">DevOps Lead & Backend · 5-person team (2 FE, 3 BE) · Jun 2025 – Aug 2025</div>
-                        <div class="meta ko hidden">DevOps 리드 & 백엔드 · 5인 팀 (프론트 2, 백엔드 3) · 2025년 6월 – 8월</div>
+                        <div class="meta en">DevOps Lead & Backend / 5-person team (2 FE, 3 BE) / Jun 2025 – Aug 2025</div>
+                        <div class="meta ko hidden">DevOps 리드 & 백엔드 / 5인 팀 (프론트 2, 백엔드 3) / 2025년 6월 – 8월</div>
                         <p class="summary en">
                             A live streaming & meme community platform for global K-pop fans. I led the complete DevOps
                             architecture and backend development, building production infrastructure that serves ~1,000 MAU
@@ -485,11 +490,11 @@
                     </div>
 
                     <div class="tags">
-                        <span class="tag">Java · Spring Boot</span>
-                        <span class="tag">MySQL · MongoDB · Redis</span>
-                        <span class="tag">Docker · GitLab CI/CD</span>
+                        <span class="tag">Java / Spring Boot</span>
+                        <span class="tag">MySQL / MongoDB / Redis</span>
+                        <span class="tag">Docker / GitLab CI/CD</span>
                         <span class="tag">NGINX Reverse Proxy</span>
-                        <span class="tag">AWS EC2 · S3 · CloudFront</span>
+                        <span class="tag">AWS EC2 / S3 / CloudFront</span>
                         <span class="tag">OpenAI GPT API</span>
                     </div>
 
@@ -501,7 +506,7 @@
 
                     <div class="stats">
                         <div class="stat"><div class="num en">~90% faster</div><div class="num ko hidden">~90% 개선</div><div class="label en">TTFB 5100ms → 350ms, LCP 330ms → 100ms via CloudFront CDN</div><div class="label ko hidden">CloudFront CDN 도입으로 TTFB 5100ms→350ms, LCP 330ms→100ms</div></div>
-                        <div class="stat"><div class="num">~1,000 MAU</div><div class="label en">Real-time streaming & chat, stable uptime</div><div class="label ko hidden">실시간 스트리밍·채팅, 안정적 가동률</div></div>
+                        <div class="stat"><div class="num">~1,000 MAU</div><div class="label en">Real-time streaming & chat, stable uptime</div><div class="label ko hidden">실시간 스트리밍과 채팅, 안정적 가동률</div></div>
                         <div class="stat"><div class="num en">Zero downtime</div><div class="num ko hidden">무중단 배포</div><div class="label en">GitLab CI/CD + Docker + NGINX rolling deploys</div><div class="label ko hidden">GitLab CI/CD + Docker + NGINX 롤링 배포</div></div>
                     </div>
 
@@ -584,11 +589,11 @@
                     <div class="ko hidden">
                         <p>
                             실제 고객이 사용하는 AI 자막 편집 플랫폼을 만드는 실리콘밸리 팀에 합류했습니다. React/Redux 기반 웹 에디터
-                            개발에 참여했고, Draft.js 자막 에디터를 유지·보수했습니다.
+                            개발에 참여했고, Draft.js 자막 에디터를 유지보수했습니다.
                         </p>
                         <p>
-                            자막 편집 플로우의 UI/UX를 개선하고, 자막 싱크·정렬 과정의 버그를 해결했으며, 백엔드 엔지니어들과
-                            협업해 API 스펙을 조정했습니다. 프로덕션 규모 React 앱의 구조와 고객 피드백·기술 제약의 균형을 배웠습니다.
+                            자막 편집 플로우의 UI/UX를 개선하고, 자막 싱크와 정렬 과정의 버그를 해결했으며, 백엔드 엔지니어들과
+                            협업해 API 스펙을 조정했습니다. 프로덕션 규모 React 앱의 구조와 고객 피드백, 기술 제약 사이의 균형을 배웠습니다.
                         </p>
                     </div>
                 </div>
@@ -649,7 +654,7 @@
                     <div class="entry-meta en">Team side project | Jun 2024 - Dec 2024</div>
                     <div class="entry-meta ko hidden">개발 프로젝트 팀 | 2024년 6월 - 12월</div>
                     <p class="en">Built a React/Electron desktop app for Gemini-assisted email drafting — signature management plus AI-powered tone/summary editing.</p>
-                    <p class="ko hidden">Gemini를 활용한 이메일 관리·작성 데스크탑 앱(React, Electron) 개발. 서명 관리 및 AI 기반 작성 내용 검정·요약·톤 변경 기능 구현.</p>
+                    <p class="ko hidden">Gemini를 활용한 이메일 관리와 작성 데스크탑 앱(React, Electron) 개발. 서명 관리 및 AI 기반 작성 내용 검토, 요약, 톤 변경 기능 구현.</p>
                 </div>
             </section>
 
@@ -837,10 +842,9 @@
     </footer>
 
     <script>
-        let currentLang = 'en';
+        let currentLang = 'ko';
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'ko' : 'en';
+        function applyLanguage() {
             const enElements = document.querySelectorAll('.en');
             const koElements = document.querySelectorAll('.ko');
             const btn = document.querySelector('.lang-toggle');
@@ -855,6 +859,13 @@
                 btn.textContent = 'KR';
             }
         }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            applyLanguage();
+        }
+
+        applyLanguage();
     </script>
 </body>
 </html>
