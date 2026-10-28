@@ -240,6 +240,10 @@
         /* Education / certification grid */
         .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
 
+        #history > .edu-block, #history > .edu-grid { margin-bottom: 2.75rem; }
+        #history > *:last-child { margin-bottom: 0; }
+        #history h3 { margin-top: 0; }
+
         .edu-block h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); margin-bottom: 0.9rem; }
 
         .edu-block .item { margin-bottom: 0.9rem; }
@@ -318,9 +322,8 @@
                     <li><a href="#projects" class="en">Projects</a><a href="#projects" class="ko hidden">프로젝트</a></li>
                     <li><a href="#ai-workflow" class="en">AI workflow</a><a href="#ai-workflow" class="ko hidden">AI 활용 방식</a></li>
                     <li><a href="#experience" class="en">Experience</a><a href="#experience" class="ko hidden">경력</a></li>
-                    <li><a href="#activities" class="en">Activities</a><a href="#activities" class="ko hidden">대외활동</a></li>
-                    <li><a href="#awards" class="en">Awards</a><a href="#awards" class="ko hidden">수상</a></li>
-                    <li><a href="#education" class="en">Education</a><a href="#education" class="ko hidden">학력 & 자격</a></li>
+                    <li><a href="#history" class="en">Background</a><a href="#history" class="ko hidden">이력</a></li>
+                    <li><a href="#education" class="en">Education</a><a href="#education" class="ko hidden">학력</a></li>
                     <li><a href="#skills" class="en">Skills</a><a href="#skills" class="ko hidden">기술 스택</a></li>
                     <li><a href="#contact" class="en">Contact</a><a href="#contact" class="ko hidden">연락처</a></li>
                 </ul>
@@ -395,7 +398,7 @@
 </div><p class="en caption-note">App captures from October 14, 2026. Select a screen to view it at full size.</p>
 <p class="ko hidden caption-note">2026년 10월 14일 앱 캡처입니다. 화면을 선택하면 원본 크기로 볼 수 있습니다.</p>
     <div class="stats">
-        <div class="stat"><div class="en num">10,000 downloads</div><div class="ko hidden num">1만 다운로드</div><div class="en label">Android and iOS combined</div>
+        <div class="stat"><div class="en num">5,000 downloads</div><div class="ko hidden num">5천 다운로드</div><div class="en label">Android and iOS combined</div>
 <div class="ko hidden label">Android 및 iOS 합산</div></div>
         <div class="stat"><div class="num">10</div><div class="en label">Supported languages, including Korean</div>
 <div class="ko hidden label">한국어를 포함한 지원 언어</div></div>
@@ -533,6 +536,38 @@
                 <h2 class="ko hidden">경력</h2>
 
                 <div class="entry">
+                    <div class="entry-title">XL8 — <span class="en">Software Engineer Intern</span><span class="ko hidden">소프트웨어 엔지니어 인턴</span></div>
+                    <div class="entry-meta en">San Jose, CA, USA | Jul 2023 - Dec 2023</div>
+                    <div class="entry-meta ko hidden">미국 캘리포니아 산호세 | 2023년 7월 - 12월</div>
+                    <div class="en">
+                        <p>
+                            Built subtitle-editing interfaces for an AI translation platform used in media localization,
+                            working in TypeScript, React, and Redux.
+                        </p>
+                        <p>
+                            Implemented one-to-one word alignment between source and translated subtitles, indexing words
+                            through Draft.js Selection State so an editor could trace a term across both languages.
+                        </p>
+                        <p>
+                            Wrote up Redux-Observable for the company engineering blog. Ran demos, code reviews, and issue
+                            tracking in English.
+                        </p>
+                    </div>
+                    <div class="ko hidden">
+                        <p>
+                            미디어 로컬라이제이션에 쓰이는 AI 번역 플랫폼의 자막 편집 화면을 TypeScript, React, Redux로 개발했습니다.
+                        </p>
+                        <p>
+                            원문과 번역문의 단어를 일대일로 대응시키는 UI를 구현했습니다. Draft.js의 Selection State를 기반으로 단어를
+                            인덱싱해 편집자가 두 언어에서 같은 용어를 추적할 수 있게 했습니다.
+                        </p>
+                        <p>
+                            Redux-Observable 학습 내용을 회사 기술 블로그에 기고했습니다. 데모와 코드 리뷰, 이슈 관리를 영어로 수행했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="entry">
                     <div class="entry-title">WIPS — <span class="en">Frontend Developer Intern</span><span class="ko hidden">프론트엔드 개발자 인턴</span></div>
                     <div class="entry-meta en">Seoul, Korea | Aug 2021 - Dec 2021</div>
                     <div class="entry-meta ko hidden">서울 | 2021년 8월 - 12월</div>
@@ -559,10 +594,14 @@
                 </div>
             </section>
 
-            <!-- Activities -->
-            <section class="section" id="activities">
-                <h2 class="en">Activities</h2>
-                <h2 class="ko hidden">대외활동</h2>
+            <!-- Background: activities / awards / certifications -->
+            <section class="section" id="history">
+                <h2 class="en">Background</h2>
+                <h2 class="ko hidden">이력</h2>
+
+                <div class="edu-block">
+                <h3 class="en">Activities</h3>
+                <h3 class="ko hidden">대외활동</h3>
 
                 <div class="entry">
                     <div class="entry-title en">Developer, YAPP</div>
@@ -590,12 +629,11 @@
                     <p class="en">Built a React/Electron desktop app for Gemini-assisted email drafting — signature management plus AI-powered tone/summary editing.</p>
                     <p class="ko hidden">Gemini를 활용한 이메일 관리와 작성 데스크탑 앱(React, Electron) 개발. 서명 관리 및 AI 기반 작성 내용 검토, 요약, 톤 변경 기능 구현.</p>
                 </div>
-            </section>
+                </div>
 
-            <!-- Awards -->
-            <section class="section" id="awards">
-                <h2 class="en">Awards & Honors</h2>
-                <h2 class="ko hidden">수상 경력</h2>
+                <div class="edu-block">
+                <h3 class="en">Awards &amp; Honors</h3>
+                <h3 class="ko hidden">수상 경력</h3>
 
                 <div class="entry">
                     <div class="entry-title en">Samsung SW AI Academy Special Project – 2nd Place</div>
@@ -650,17 +688,48 @@
                     <p class="en">Proposed an AR/VR character-restoration idea using photos and videos.</p>
                     <p class="ko hidden">사진 및 영상 기반 AR/VR 인물 복원 아이디어 제안.</p>
                 </div>
-            </section>
-
-            <!-- Education & Certifications -->
-            <section class="section" id="education">
-                <h2 class="en">Education & Certifications</h2>
-                <h2 class="ko hidden">학력 & 자격</h2>
+                </div>
 
                 <div class="edu-grid">
                     <div class="edu-block">
-                        <h3 class="en">Education</h3>
-                        <h3 class="ko hidden">학력</h3>
+                        <h3 class="en">Certifications</h3>
+                        <h3 class="ko hidden">자격증</h3>
+                        <div class="item">
+                            <div class="item-title">AWS Solutions Architect &ndash; Associate</div>
+                            <div class="item-date en">AWS | Sep 2025</div>
+                            <div class="item-date ko hidden">AWS | 2025년 9월</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-title">SQLD &ndash; SQL Developer</div>
+                            <div class="item-date en">Korea Data Agency | Sep 2024</div>
+                            <div class="item-date ko hidden">한국데이터산업진흥원 | 2024년 9월</div>
+                        </div>
+                    </div>
+
+                    <div class="edu-block">
+                        <h3 class="en">Languages</h3>
+                        <h3 class="ko hidden">어학</h3>
+                        <div class="item">
+                            <div class="item-title">OPIc &mdash; AL (Advanced Low)</div>
+                            <div class="item-date en">ACTFL | Feb 2025</div>
+                            <div class="item-date ko hidden">ACTFL | 2025년 2월</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-title">TOEIC &mdash; 945 / 990</div>
+                            <div class="item-date en">ETS | Sep 2024</div>
+                            <div class="item-date ko hidden">ETS | 2024년 9월</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section" id="education">
+                <h2 class="en">Education</h2>
+                <h2 class="ko hidden">학력</h2>
+
+                <div class="edu-grid">
+                    <div class="edu-block">
                         <div class="item">
                             <div class="item-title">Inha University</div>
                             <div class="item-date en">B.S. Computer Science | 2019 - 2025</div>
@@ -680,35 +749,6 @@
                         </div>
                     </div>
 
-                    <div class="edu-block">
-                        <h3 class="en">Certifications</h3>
-                        <h3 class="ko hidden">자격증</h3>
-                        <div class="item">
-                            <div class="item-title">AWS Solutions Architect – Associate</div>
-                            <div class="item-date en">AWS | Sep 2025</div>
-                            <div class="item-date ko hidden">AWS | 2025년 9월</div>
-                        </div>
-                        <div class="item">
-                            <div class="item-title">SQLD – SQL Developer</div>
-                            <div class="item-date en">Korea Data Agency | Sep 2024</div>
-                            <div class="item-date ko hidden">한국데이터산업진흥원 | 2024년 9월</div>
-                        </div>
-                    </div>
-
-                    <div class="edu-block">
-                        <h3 class="en">Languages</h3>
-                        <h3 class="ko hidden">어학</h3>
-                        <div class="item">
-                            <div class="item-title">OPIc — AL (Advanced Low)</div>
-                            <div class="item-date en">ACTFL | Feb 2025</div>
-                            <div class="item-date ko hidden">ACTFL | 2025년 2월</div>
-                        </div>
-                        <div class="item">
-                            <div class="item-title">TOEIC — 945 / 990</div>
-                            <div class="item-date en">ETS | Sep 2024</div>
-                            <div class="item-date ko hidden">ETS | 2024년 9월</div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
